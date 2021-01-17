@@ -7,7 +7,7 @@
     <string name="tv_github_string"><b>Github:</b> github.com/boronov</string>
     <string name="tv_telegram_string"><b>Telegram:</b> t.me/boronov_11</string>
     <string name="tv_app_count_word"><b>Слов в базе:</b> 191108</string>
-    <string name="inter_word">Введите слово…</string>
+    <string name="inter_word">Введите слово</string>
     <string name="copy">Слово скопированно</string>
     <string name="share">Поделиться</string>
     <string name="tv_app_name_string">Словарь Farhang</string>

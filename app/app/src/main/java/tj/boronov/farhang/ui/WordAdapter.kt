@@ -4,12 +4,14 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -29,12 +31,14 @@ class WordAdapter :
     ) {
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
+        // Get data
         val word = getItem(position)
 
+        // Set data to item
         holder.itemView.findViewById<TextView>(R.id.text_word).text = word?.word
         holder.itemView.findViewById<TextView>(R.id.text_definition_word).text = word?.definition
 
-
+        // Set isFavorite icon in item
         holder.itemView.findViewById<Button>(R.id.btn_favorite).background =
             if (word?.favorite == 0) {
                 AppCompatResources.getDrawable(
@@ -48,6 +52,7 @@ class WordAdapter :
                 )
             }
 
+        // Dialog box with detailed information on a word
         holder.itemView.setOnClickListener {
             MaterialAlertDialogBuilder(it.context)
                 .setTitle(word?.word)
@@ -57,15 +62,15 @@ class WordAdapter :
                 }
                 .show()
         }
-
+        // Button for copy word to clipboard
         holder.itemView.findViewById<Button>(R.id.btn_copy).setOnClickListener {
             Snackbar.make(
                 it.rootView,
                 it.context.resources.getString(R.string.copy),
                 Snackbar.LENGTH_SHORT
             )
-                .setTextColor(it.resources.getColor(android.R.color.white))
-                .setBackgroundTint(it.resources.getColor(R.color.green))
+                .setTextColor(Color.WHITE)
+                .setBackgroundTint(ContextCompat.getColor(it.context, R.color.green))
                 .show()
 
             val clipboard: ClipboardManager =
@@ -79,6 +84,7 @@ class WordAdapter :
             clipboard.setPrimaryClip(clip)
         }
 
+        // Button to send word to others
         holder.itemView.findViewById<Button>(R.id.btn_share).setOnClickListener {
             val sendIntent = Intent()
             sendIntent.action = Intent.ACTION_SEND
@@ -94,16 +100,12 @@ class WordAdapter :
             )
         }
 
+        // Button for add word to favorite
         holder.itemView.findViewById<Button>(R.id.btn_favorite).setOnClickListener {
-            val newWord = Word()
-            newWord.word = word?.word!!
-            newWord.id = word.id
-            newWord.definition = word.definition
-            newWord.dictionaryID = word.dictionaryID
-            newWord.favorite = (word.favorite + 1) % 2
+            word!!.favorite = (word.favorite + 1) % 2
 
             CoroutineScope(Dispatchers.IO).launch {
-                App.database.wordDao().update(newWord)
+                App.database.wordDao().update(word)
             }
         }
     }
@@ -117,6 +119,7 @@ class WordAdapter :
 
     class WordViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
+    // Word comparator
     object WordComparator : DiffUtil.ItemCallback<Word>() {
         override fun areItemsTheSame(oldItem: Word, newItem: Word): Boolean {
             return oldItem.id == newItem.id

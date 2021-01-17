@@ -1,18 +1,11 @@
 package tj.boronov.farhang.database
 
-import androidx.paging.DataSource
 import androidx.paging.PagingSource
 import androidx.room.*
 import tj.boronov.farhang.util.*
 
 @Dao
 interface WordDao {
-
-    @Query(
-        "SELECT * FROM $DATABASE_TABLE_NAME" +
-                " ORDER BY $TABLE_WORD_COLUMN_WORD"
-    )
-    fun getAll(): PagingSource<Int, Word>
 
     @Query(
         "SELECT * FROM $DATABASE_TABLE_NAME" +
@@ -35,12 +28,6 @@ interface WordDao {
     )
     fun getByWord(word: String, dictionaryID: Int): PagingSource<Int, Word>
 
-    @Insert
-    suspend fun insert(word: Word)
-
     @Update
     suspend fun update(word: Word)
-
-    @Delete
-    suspend fun delete(word: Word)
 }

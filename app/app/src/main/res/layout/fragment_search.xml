@@ -49,6 +49,7 @@
                             android:layout_marginStart="@dimen/spacing_middle"
                             android:background="@android:color/transparent"
                             android:drawableStart="@drawable/ic_search"
+                            android:hint="@string/inter_word"
                             android:singleLine="true" />
 
                     </androidx.cardview.widget.CardView>
@@ -148,7 +149,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/search_panel"
-        android:visibility="visible"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         tools:listitem="@layout/word_item" />
 
@@ -157,6 +157,5 @@
         layout="@layout/layout_no_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone" />
+        android:layout_gravity="center" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

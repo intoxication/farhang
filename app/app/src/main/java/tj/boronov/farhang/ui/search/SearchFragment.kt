@@ -1,13 +1,11 @@
 package tj.boronov.farhang.ui.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
@@ -16,8 +14,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tj.boronov.farhang.R
-import tj.boronov.farhang.ui.WordAdapter
 import tj.boronov.farhang.databinding.FragmentSearchBinding
+import tj.boronov.farhang.ui.WordAdapter
 
 class SearchFragment : Fragment() {
 
@@ -40,7 +38,8 @@ class SearchFragment : Fragment() {
 
         binding = FragmentSearchBinding.inflate(inflater, container, false)
 
-        binding.btnLang.text = resources.getStringArray(R.array.lang)[0]
+        binding.btnLang.text =
+            resources.getStringArray(R.array.lang)[viewModel.dictionaryID.value!!.toInt()]
 
         wordAdapter = WordAdapter()
         wordAdapter.addLoadStateListener { loadState ->
@@ -66,7 +65,7 @@ class SearchFragment : Fragment() {
         }
 
         binding.searchWord.addTextChangedListener {
-            viewModel.filterDatabase(it.toString())
+            viewModel.filterDatabase(it.toString(), viewModel.dictionaryID.value.toString())
         }
 
         binding.btnLang.setOnClickListener {
@@ -77,10 +76,10 @@ class SearchFragment : Fragment() {
                 .setTitle(resources.getString(R.string.choose_lang))
                 .setSingleChoiceItems(
                     R.array.lang,
-                    viewModel.dictionaryID.toInt()
+                    viewModel.dictionaryID.value!!.toInt()
                 )
                 { dialog, which ->
-                    viewModel.filterDatabase(viewModel.word, which.toString())
+                    viewModel.filterDatabase(viewModel.query.value.toString(), which.toString())
                     binding.btnLang.text = resources.getStringArray(R.array.lang)[which]
                     dialog.cancel()
                     it.isClickable = true
@@ -170,7 +169,8 @@ class SearchFragment : Fragment() {
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
+
         binding.btnLang.text =
-            resources.getStringArray(R.array.lang)[viewModel.dictionaryID.toInt()]
+            resources.getStringArray(R.array.lang)[viewModel.dictionaryID.value!!.toInt()]
     }
 }
