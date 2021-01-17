@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name" translatable="false">Farhang</string>
+    <string name="search">Поиск</string>
+    <string name="favorites">Избранные</string>
+    <string name="info">О приложении</string>
+    <string name="tv_app_version_string"><b>Версия:</b> 1.0.0</string>
+    <string name="tv_github_string"><b>Github:</b> github.com/boronov</string>
+    <string name="tv_telegram_string"><b>Telegram:</b> t.me/boronov_11</string>
+    <string name="tv_app_count_word"><b>Слов в базе:</b> 191108</string>
+    <string name="inter_word">Введите слово…</string>
+    <string name="copy">Слово скопированно</string>
+    <string name="share">Поделиться</string>
+    <string name="tv_app_name_string">Словарь Farhang</string>
+    <string name="choose_lang">Направление перевода:</string>
+    <string name="ok">OK</string>
+    <string name="no_data">Такого слова нет :(</string>
+    <string name="no_data_text_below">Попробуйте ввести другое слово</string>
+    <string name="search_hint">Начните вводить слово…</string>
+
+    <string name="letter_1">ғ</string>
+    <string name="letter_2">ӣ</string>
+    <string name="letter_3">қ</string>
+    <string name="letter_4">ӯ</string>
+    <string name="letter_5">ҳ</string>
+    <string name="letter_6">ҷ</string>
+
+    <string name="ru_tj_string">RU-TJ</string>
+    <string name="no_data_favorite">Нет избранных слов :(</string>
+    <string name="no_data_text_below_favorite">Для того чтобы здесь появились записи выберете слово и нажмите на сердечко</string>
+
+    <string-array name="lang">
+        <item><string name="any">Любое</string></item>
+        <item>TJ-RU</item>
+        <item>RU-TJ</item>
+        <item>EN-TJ</item>
+        <item>TJ-EN</item>
+        <item>TJ-TJ</item>
+    </string-array>
+
+</resources>
