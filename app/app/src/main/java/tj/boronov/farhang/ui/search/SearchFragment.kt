@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tj.boronov.farhang.R
 import tj.boronov.farhang.databinding.FragmentSearchBinding
-import tj.boronov.farhang.ui.WordAdapter
+import tj.boronov.farhang.adapter.WordAdapter
 
 class SearchFragment : Fragment() {
 

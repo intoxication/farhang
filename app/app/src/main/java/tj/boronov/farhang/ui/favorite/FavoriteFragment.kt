@@ -1,7 +1,6 @@
 package tj.boronov.farhang.ui.favorite
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import tj.boronov.farhang.ui.WordAdapter
+import tj.boronov.farhang.adapter.WordAdapter
 import tj.boronov.farhang.databinding.FragmentFavoriteBinding
 
 class FavoriteFragment : Fragment() {

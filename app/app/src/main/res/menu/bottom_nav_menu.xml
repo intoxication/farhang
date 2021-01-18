@@ -7,8 +7,12 @@
         android:title="@string/search" />
 
     <item
+        android:id="@+id/nav_phrasebook"
+        android:icon="@drawable/ic_phrasebook"
+        android:title="@string/phrasebook" />
+
+    <item
         android:id="@+id/nav_favorite"
         android:icon="@drawable/ic_favorite"
         android:title="@string/favorites" />
-
 </menu>

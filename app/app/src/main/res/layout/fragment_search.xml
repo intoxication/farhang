@@ -50,6 +50,7 @@
                             android:background="@android:color/transparent"
                             android:drawableStart="@drawable/ic_search"
                             android:hint="@string/inter_word"
+                            android:paddingEnd="@dimen/spacing_middle"
                             android:singleLine="true" />
 
                     </androidx.cardview.widget.CardView>

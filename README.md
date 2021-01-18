@@ -17,5 +17,3 @@ Farhang is the only Tajik dictionary with over 190k words. High-quality vocabula
 1. Contains letters of the Tajik alphabet are not used on a standard keyboard
 2. The word base is installed together and does not require any additional downloads.
 3. Modern and easy-to-use interface
-
-<img src="https://github.com/boronov/farhang/blob/master/forPlayMarket/screenShots/desc.jpg"  height="500" width="1024" >

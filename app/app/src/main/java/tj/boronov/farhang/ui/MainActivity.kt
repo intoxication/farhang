@@ -1,6 +1,5 @@
 package tj.boronov.farhang.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -11,7 +10,6 @@ import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import tj.boronov.farhang.R
 import tj.boronov.farhang.databinding.ActivityMainBinding
-import tj.boronov.farhang.ui.info.InfoActivity
 import tj.boronov.farhang.util.setupWithNavController
 
 class MainActivity : AppCompatActivity() {
@@ -50,8 +48,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.infoFragment -> {
-                val intent = Intent(this, InfoActivity::class.java)
-                startActivity(intent)
+                InfoDialog().show(supportFragmentManager, "infoDialog")
                 return true
             }
             else -> super.onOptionsItemSelected(item)
@@ -67,7 +64,8 @@ class MainActivity : AppCompatActivity() {
 
         val navGraphIds = listOf(
             R.navigation.nav_search,
-            R.navigation.nav_favorite
+            R.navigation.nav_favorite,
+            R.navigation.nav_phrasebook
         )
 
         // Setup the bottom navigation view with a list of navigation graphs

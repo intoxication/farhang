@@ -11,6 +11,7 @@ class App : Application() {
 
         database = Room.databaseBuilder(this, FarhangDatabase::class.java, DATABASE_NAME)
             .createFromAsset("database/data.db")
+            .fallbackToDestructiveMigration()
             .build()
     }
 
