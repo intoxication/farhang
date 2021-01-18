@@ -7,8 +7,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.cachedIn
 import tj.boronov.farhang.App
-import tj.boronov.farhang.database.Categories
-import tj.boronov.farhang.database.Word
+import tj.boronov.farhang.database.model.Categories
 
 class PhrasebookViewModel : ViewModel() {
 

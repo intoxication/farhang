@@ -65,7 +65,8 @@ class MainActivity : AppCompatActivity() {
         val navGraphIds = listOf(
             R.navigation.nav_search,
             R.navigation.nav_favorite,
-            R.navigation.nav_phrasebook
+            R.navigation.nav_phrasebook,
+            R.navigation.nav_note
         )
 
         // Setup the bottom navigation view with a list of navigation graphs

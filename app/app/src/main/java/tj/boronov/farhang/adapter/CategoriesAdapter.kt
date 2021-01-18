@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tj.boronov.farhang.R
-import tj.boronov.farhang.database.Categories
+import tj.boronov.farhang.database.model.Categories
 
 class CategoriesAdapter :
     PagingDataAdapter<Categories, CategoriesAdapter.WordViewHolder>(

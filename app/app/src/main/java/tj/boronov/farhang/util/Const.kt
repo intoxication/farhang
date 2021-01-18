@@ -27,3 +27,7 @@ const val TABLE_PHRASES_COLUMN_SUBCATEGORY_ID = "subcategory_id"
 const val TABLE_PHRASES_COLUMN_TRANSLATE_TJ = "translate_tj"
 const val TABLE_PHRASES_COLUMN_TRANSLATE_RU = "translate_ru"
 
+const val DATABASE_TABLE_NOTE = "note"
+const val TABLE_NOTE_COLUMN_ID = "_id"
+const val TABLE_NOTE_COLUMN_NAME = "name"
+const val TABLE_NOTE_COLUMN_DESCRIPTION = "description"

@@ -29,6 +29,8 @@
     <string name="no_data_favorite">Нет избранных слов :(</string>
     <string name="no_data_text_below_favorite">Для того чтобы здесь появились записи выберете слово и нажмите на сердечко</string>
     <string name="phrasebook">Разговорник</string>
+    <string name="note">Ёднома</string>
+    <string name="note_title">"В этом сборнике собраны основные правила таджикского языка. Рекомендуется ученикам, учителям и всем желающим. "</string>
 
     <string-array name="lang">
         <item><string name="any">Любое</string></item>

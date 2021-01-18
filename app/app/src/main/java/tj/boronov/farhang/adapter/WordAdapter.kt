@@ -23,7 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import tj.boronov.farhang.App
 import tj.boronov.farhang.R
-import tj.boronov.farhang.database.Word
+import tj.boronov.farhang.database.model.Word
 
 class WordAdapter :
     PagingDataAdapter<Word, WordAdapter.WordViewHolder>(
