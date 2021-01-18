@@ -31,6 +31,7 @@
     <string name="phrasebook">Разговорник</string>
     <string name="note">Ёднома</string>
     <string name="note_title">"В этом сборнике собраны основные правила таджикского языка. Рекомендуется ученикам, учителям и всем желающим. "</string>
+    <string name="rate_app">Оценить приложение</string>
 
     <string-array name="lang">
         <item><string name="any">Любое</string></item>
