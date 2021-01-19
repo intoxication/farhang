@@ -3,12 +3,19 @@
     package="tj.boronov.farhang">
 
     <application
-        android:name="tj.boronov.farhang.App"
+        android:name=".App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false">
-
+        <activity
+            android:name=".ui.phrasebook.singleCategory.SingleCategoryActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
@@ -20,6 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
+
 </manifest>
