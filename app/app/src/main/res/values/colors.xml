@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#2d4059</color>
-    <color name="colorPrimaryDark">#ea5455</color>
+    <color name="colorPrimaryDark">@color/colorAccent</color>
     <color name="colorAccent">#ea5455</color>
 
     <color name="colorLast">#decdc3</color>
-    <color name="green">#1CA53D</color>
-    <color name="red">#FF2400</color>
+    <color name="colorGreen">#1CA53D</color>
+    <color name="colorRed">#FF2400</color>
 
-    <!-- main color for drawable-v21/my_ripple -->
     <color name="my_color_highlight">#2d4059</color>
-
-    <!-- main color for drawable/my_ripple -->
-    <color name="my_color_highlight_press">#46638A</color>
-    <color name="my_color_highlight_focus">#2d4059</color>
 
     <color name="primaryText">#292929</color>
     <color name="secondaryText">#4e4e4e</color>

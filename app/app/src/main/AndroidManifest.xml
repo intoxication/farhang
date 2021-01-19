@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false">
         <activity
-            android:name=".ui.phrasebook.singleCategory.SingleCategoryActivity"
+            android:name=".ui.phrasebook.category.CategoryActivity"
+            android:label="@string/phrasebook"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

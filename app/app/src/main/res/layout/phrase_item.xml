@@ -21,7 +21,7 @@
             android:paddingStart="@dimen/spacing_large"
             android:paddingEnd="@dimen/spacing_large"
             android:paddingBottom="@dimen/spacing_medium"
-            android:text="Саломатии хонуматон (шавҳаратон) хубаст?"
+            android:text="@string/test_phrases_1"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp"
             android:textStyle="bold|italic" />
@@ -34,7 +34,7 @@
             android:paddingStart="@dimen/spacing_large"
             android:paddingEnd="@dimen/spacing_large"
             android:paddingBottom="@dimen/spacing_large"
-            android:text="Как здоровье (самочувствие) супруги (супруга)?"
+            android:text="@string/test_phrasers_2"
             android:textColor="@color/secondaryText" />
 
         <View

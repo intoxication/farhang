@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.phrasebook.singleCategory.SingleCategoryActivity">
+    tools:context=".ui.phrasebook.category.CategoryActivity">
 
     <RelativeLayout
         android:id="@+id/category_title"
@@ -26,7 +26,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_test_category" />
+                android:src="@drawable/ic_test_category"
+                android:contentDescription="@string/phrasebook" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Погода"
+                    android:text="@string/test_category_1"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:textStyle="bold|italic" />
@@ -51,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_middle"
                     android:gravity="center"
-                    android:text="Боду хаво Боду хаво Боду хаво Боду хаво Боду хаво Боду хаво"
+                    android:text="@string/test_category_2"
                     android:textColor="@android:color/white"
                     android:textSize="16sp" />
             </LinearLayout>

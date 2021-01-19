@@ -51,7 +51,8 @@
                             android:drawableStart="@drawable/ic_search"
                             android:hint="@string/inter_word"
                             android:paddingEnd="@dimen/spacing_middle"
-                            android:singleLine="true" />
+                            android:singleLine="true"
+                            android:textColorHint="@color/secondaryText" />
 
                     </androidx.cardview.widget.CardView>
 

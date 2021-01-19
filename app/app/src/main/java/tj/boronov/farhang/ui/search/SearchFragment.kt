@@ -72,7 +72,6 @@ class SearchFragment : Fragment() {
             it.isClickable = false
 
             MaterialAlertDialogBuilder(requireContext())
-                .setCancelable(false)
                 .setTitle(resources.getString(R.string.choose_lang))
                 .setSingleChoiceItems(
                     R.array.lang,
@@ -83,6 +82,9 @@ class SearchFragment : Fragment() {
                     binding.btnLang.text = resources.getStringArray(R.array.lang)[which]
                     dialog.cancel()
                     it.isClickable = true
+                }
+                .setOnDismissListener {
+                    binding.btnLang.isClickable = true
                 }
                 .show()
         }

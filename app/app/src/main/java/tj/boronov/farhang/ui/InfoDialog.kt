@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import tj.boronov.farhang.R
 import tj.boronov.farhang.databinding.DialogInfoBinding
 
 class InfoDialog : DialogFragment() {

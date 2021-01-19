@@ -7,8 +7,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.cachedIn
 import tj.boronov.farhang.App
-import tj.boronov.farhang.database.model.Note
-import tj.boronov.farhang.database.model.Word
+import tj.boronov.farhang.data.model.Note
 
 class NoteViewModel : ViewModel() {
 

@@ -23,7 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import tj.boronov.farhang.App
 import tj.boronov.farhang.R
-import tj.boronov.farhang.database.model.Word
+import tj.boronov.farhang.data.model.Word
 
 class WordAdapter :
     PagingDataAdapter<Word, WordAdapter.WordViewHolder>(
@@ -70,7 +70,7 @@ class WordAdapter :
                 Snackbar.LENGTH_SHORT
             )
                 .setTextColor(Color.WHITE)
-                .setBackgroundTint(ContextCompat.getColor(it.context, R.color.green))
+                .setBackgroundTint(ContextCompat.getColor(it.context, R.color.colorGreen))
                 .show()
 
             val clipboard: ClipboardManager =

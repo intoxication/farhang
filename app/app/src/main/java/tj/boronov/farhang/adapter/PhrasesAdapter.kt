@@ -9,7 +9,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import tj.boronov.farhang.R
-import tj.boronov.farhang.database.model.Phrases
+import tj.boronov.farhang.data.model.Phrases
 
 class PhrasesAdapter :
     PagingDataAdapter<Phrases, PhrasesAdapter.WordViewHolder>(
@@ -36,7 +36,7 @@ class PhrasesAdapter :
 
     class WordViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-    //  Phrases comparator
+    // Phrases comparator
     object PhrasesComparator : DiffUtil.ItemCallback<Phrases>() {
         override fun areItemsTheSame(oldItem: Phrases, newItem: Phrases): Boolean {
             return oldItem.id == newItem.id

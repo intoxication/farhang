@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tj.boronov.farhang.R
-import tj.boronov.farhang.database.model.Categories
-import tj.boronov.farhang.ui.phrasebook.singleCategory.SingleCategoryActivity
+import tj.boronov.farhang.data.model.Categories
+import tj.boronov.farhang.ui.phrasebook.category.CategoryActivity
 
 class CategoriesAdapter :
     PagingDataAdapter<Categories, CategoriesAdapter.WordViewHolder>(
@@ -28,12 +28,14 @@ class CategoriesAdapter :
         holder.itemView.findViewById<TextView>(R.id.category_description).text =
             category?.description
 
+        // Set category icon
         Glide.with(holder.itemView.context)
             .load(Uri.parse("file:///android_asset/icon/" + category?.image))
             .into(holder.itemView.findViewById(R.id.category_icon))
 
+        // On category click
         holder.itemView.setOnClickListener {
-            val intent = Intent(it.context, SingleCategoryActivity()::class.java)
+            val intent = Intent(it.context, CategoryActivity()::class.java)
 
             intent.putExtra("categoryID", category?.id)
             intent.putExtra("categoryName", category?.name)
@@ -54,7 +56,7 @@ class CategoriesAdapter :
 
     class WordViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-    //  Categories comparator
+    // Categories comparator
     object CategoriesComparator : DiffUtil.ItemCallback<Categories>() {
         override fun areItemsTheSame(oldItem: Categories, newItem: Categories): Boolean {
             return oldItem.id == newItem.id

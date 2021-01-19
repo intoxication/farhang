@@ -27,7 +27,7 @@
                 android:layout_gravity="center"
                 android:background="@drawable/ic_icon_empty"
                 android:gravity="center"
-                android:text="155"
+                android:text="@string/test_note_id"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -38,7 +38,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/spacing_middle"
                 android:gravity="start|center"
-                android:text="абрикос"
+                android:text="@string/test_note"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />

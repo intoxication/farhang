@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import tj.boronov.farhang.R
-import tj.boronov.farhang.database.model.Note
+import tj.boronov.farhang.data.model.Note
 
 class NoteAdapter :
     PagingDataAdapter<Note, NoteAdapter.WordViewHolder>(
@@ -27,6 +26,7 @@ class NoteAdapter :
         holder.itemView.findViewById<TextView>(R.id.note_name).text = note?.name
         holder.itemView.findViewById<TextView>(R.id.note_id).text = "#${note?.id.toString()}"
 
+        //On note click
         holder.itemView.setOnClickListener {
             MaterialAlertDialogBuilder(it.context)
                 .setTitle(note?.name)
@@ -36,7 +36,6 @@ class NoteAdapter :
                 }
                 .show()
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
@@ -48,7 +47,7 @@ class NoteAdapter :
 
     class WordViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-    //  Notes comparator
+    // Notes comparator
     object NoteComparator : DiffUtil.ItemCallback<Note>() {
         override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
             return oldItem.id == newItem.id

@@ -2,7 +2,7 @@ package tj.boronov.farhang
 
 import android.app.Application
 import androidx.room.Room
-import tj.boronov.farhang.database.FarhangDatabase
+import tj.boronov.farhang.data.FarhangDatabase
 import tj.boronov.farhang.util.*
 
 class App : Application() {

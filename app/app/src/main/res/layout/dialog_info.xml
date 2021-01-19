@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/tv_app_version_string"
+            android:text="@string/app_version_string"
             android:textColor="@color/primaryText"
             android:textSize="18sp" />
 
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/tv_app_count_note"
+            android:text="@string/app_count_note"
             android:textColor="@color/primaryText"
             android:textSize="18sp" />
 
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/tv_app_count_word"
+            android:text="@string/app_count_word"
             android:textColor="@color/primaryText"
             android:textSize="18sp" />
 
@@ -54,18 +54,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/tv_app_count_phrases"
+            android:text="@string/app_count_phrases"
             android:textColor="@color/primaryText"
             android:textSize="18sp" />
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_large"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:autoLink="web"
             android:gravity="center"
             android:linksClickable="true"
-            android:text="@string/tv_github_string"
+            android:text="@string/github_string"
             android:textColor="@color/primaryText"
             android:textSize="18sp" />
 
@@ -75,7 +75,7 @@
             android:autoLink="web"
             android:gravity="center"
             android:linksClickable="true"
-            android:text="@string/tv_telegram_string"
+            android:text="@string/telegram_string"
             android:textColor="@color/primaryText"
             android:textSize="18sp" />
 

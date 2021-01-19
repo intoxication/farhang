@@ -10,7 +10,7 @@
         android:id="@+id/nav_phrasebook"
         android:icon="@drawable/ic_phrasebook"
         android:title="@string/phrasebook" />
-    
+
     <item
         android:id="@+id/nav_note"
         android:icon="@drawable/ic_note"
