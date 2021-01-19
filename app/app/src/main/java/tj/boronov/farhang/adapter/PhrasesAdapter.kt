@@ -1,15 +1,25 @@
 package tj.boronov.farhang.adapter
 
 import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Phrases
+
 
 class PhrasesAdapter :
     PagingDataAdapter<Phrases, PhrasesAdapter.WordViewHolder>(
@@ -25,6 +35,68 @@ class PhrasesAdapter :
         holder.itemView.findViewById<TextView>(R.id.translate_ru).text = phrase?.translateRu
         holder.itemView.findViewById<TextView>(R.id.translate_tj).text = phrase?.translateTj
 
+        // On phrases click
+        holder.itemView.setOnClickListener { view ->
+            val popup = PopupMenu(holder.itemView.context, holder.itemView)
+            popup.inflate(R.menu.phrases_menu)
+
+            val clipboard: ClipboardManager =
+                view.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+            popup.setOnMenuItemClickListener {
+                Snackbar.make(
+                    view.rootView,
+                    view.context.resources.getString(R.string.copy),
+                    Snackbar.LENGTH_SHORT
+                )
+                    .setTextColor(Color.WHITE)
+                    .setBackgroundTint(ContextCompat.getColor(view.context, R.color.colorGreen))
+                    .show()
+
+                when (it.itemId) {
+                    R.id.copy_ru -> {
+                        val clip = ClipData.newPlainText(
+                            "",
+                            phrase?.translateRu
+                        )
+                        clipboard.setPrimaryClip(clip)
+                        true
+                    }
+                    R.id.copy_tj -> {
+                        val clip = ClipData.newPlainText(
+                            "",
+                            phrase?.translateTj
+                        )
+                        clipboard.setPrimaryClip(clip)
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popup.show()
+        }
+
+        // On long phrases click
+        holder.itemView.setOnLongClickListener {
+            val clipboard: ClipboardManager =
+                it.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+            Snackbar.make(
+                it.rootView,
+                it.context.resources.getString(R.string.copy),
+                Snackbar.LENGTH_SHORT
+            )
+                .setTextColor(Color.WHITE)
+                .setBackgroundTint(ContextCompat.getColor(it.context, R.color.colorGreen))
+                .show()
+
+            val clip = ClipData.newPlainText(
+                "",
+                phrase?.translateTj + " — " + phrase?.translateRu
+            )
+            clipboard.setPrimaryClip(clip)
+            return@setOnLongClickListener true
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {

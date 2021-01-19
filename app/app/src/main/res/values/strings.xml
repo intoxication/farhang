@@ -16,7 +16,7 @@
     <string name="phrasebook">Разговорник</string>
     <string name="note">Ёднома</string>
 
-    <string name="app_version_string">Версия: <b>1.0.0</b></string>
+    <string name="app_version_string">Версия: <b>1.2.0</b></string>
     <string name="github_string">Github: github.com/boronov</string>
     <string name="telegram_string">Telegram: t.me/boronov_11</string>
     <string name="app_count_word">Слов в словаре: <b>191108</b></string>
@@ -24,15 +24,20 @@
     <string name="app_count_note">Правил в ёдноме: <b>150</b></string>
     <string name="rate_app">Оценить приложение</string>
 
-
     <string name="inter_word">Введите слово</string>
-    <string name="copy">Слово скопированно</string>
+    <string name="copy">Скопировано</string>
+    <string name="copy_tj">Скопировать фразу</string>
+    <string name="copy_ru">Скопировать перевод фразы</string>
+
     <string name="note_title">"В этом сборнике собраны основные правила таджикского языка. Рекомендуется ученикам, учителям и всем желающим. "</string>
     <string name="share">Поделиться</string>
     <string name="ok">OK</string>
     <string name="test_category_1">Погода</string>
     <string name="test_category_2">Боду хаво</string>
-
+    <string name="test_phrases_1">Саломатии хонуматон (шавҳаратон) хубаст?</string>
+    <string name="test_phrases_2">Как здоровье (самочувствие) супруги (супруга)?</string>
+    <string name="test_note">абрикос</string>
+    <string name="test_note_id">155</string>
 
     <!-- Empty list -->
     <string name="no_data">Такого слова нет :(</string>
@@ -43,10 +48,6 @@
     <!-- Type of translate -->
     <string name="choose_lang">Направление перевода:</string>
     <string name="ru_tj_string">RU-TJ</string>
-    <string name="test_phrases_1">Саломатии хонуматон (шавҳаратон) хубаст?</string>
-    <string name="test_phrasers_2">Как здоровье (самочувствие) супруги (супруга)?</string>
-    <string name="test_note">абрикос</string>
-    <string name="test_note_id">155</string>
     <string name="empty_box">empty box</string>
     <string-array name="lang">
         <item><string name="any">Любое</string></item>
