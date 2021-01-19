@@ -48,7 +48,7 @@ class NoteAdapter :
 
     class WordViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-    //  Categories comparator
+    //  Notes comparator
     object NoteComparator : DiffUtil.ItemCallback<Note>() {
         override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
             return oldItem.id == newItem.id

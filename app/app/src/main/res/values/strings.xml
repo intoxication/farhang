@@ -9,6 +9,7 @@
     <string name="tv_telegram_string">Telegram: t.me/boronov_11</string>
     <string name="tv_app_count_word">Слов в словаре: <b>191108</b></string>
     <string name="tv_app_count_phrases">Фраз в разговорнике: <b>2450</b></string>
+    <string name="tv_app_count_note">Правил в ёдноме: <b>150</b></string>
     <string name="inter_word">Введите слово</string>
     <string name="copy">Слово скопированно</string>
     <string name="share">Поделиться</string>

@@ -43,7 +43,7 @@
                 android:paddingRight="@dimen/spacing_middle"
                 android:paddingBottom="@dimen/spacing_middle"
                 android:text="1. зардолу; 2. дарахти зардолу. 1. зардолу; 2. дарахти зардолу. 1. зардолу;"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@color/secondaryText" />
 
         </RelativeLayout>
 
