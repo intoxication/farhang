@@ -1,17 +1,18 @@
 package tj.boronov.farhang.adapter
 
+import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import tj.boronov.farhang.R
 import tj.boronov.farhang.database.model.Categories
+import tj.boronov.farhang.ui.phrasebook.singleCategory.SingleCategoryActivity
 
 class CategoriesAdapter :
     PagingDataAdapter<Categories, CategoriesAdapter.WordViewHolder>(
@@ -32,7 +33,14 @@ class CategoriesAdapter :
             .into(holder.itemView.findViewById(R.id.category_icon))
 
         holder.itemView.setOnClickListener {
-            Toast.makeText(it.context, "work", Toast.LENGTH_LONG).show()
+            val intent = Intent(it.context, SingleCategoryActivity()::class.java)
+
+            intent.putExtra("categoryID", category?.id)
+            intent.putExtra("categoryName", category?.name)
+            intent.putExtra("categoryDescription", category?.description)
+            intent.putExtra("categoryImage", category?.image)
+
+            it.context.startActivity(intent)
         }
 
     }
