@@ -49,6 +49,7 @@
     <string name="choose_lang">Направление перевода:</string>
     <string name="ru_tj_string">RU-TJ</string>
     <string name="empty_box">empty box</string>
+    <string name="inter_phrases">Введите фразу</string>
     <string-array name="lang">
         <item><string name="any">Любое</string></item>
         <item>TJ-RU</item>
