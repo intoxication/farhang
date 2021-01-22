@@ -5,46 +5,69 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:focusable="true"
-    android:longClickable="true"
     android:foreground="?android:attr/selectableItemBackground"
+    android:longClickable="true"
     app:cardCornerRadius="0dp"
     app:cardElevation="0dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/translate_tj"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/spacing_large"
+            android:orientation="horizontal"
             android:paddingStart="@dimen/spacing_large"
-            android:paddingEnd="@dimen/spacing_large"
-            android:paddingBottom="@dimen/spacing_medium"
-            android:text="@string/test_phrases_1"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold|italic" />
+            android:paddingEnd="@dimen/spacing_large">
 
-        <TextView
-            android:id="@+id/translate_ru"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/translate_tj"
-            android:paddingStart="@dimen/spacing_large"
-            android:paddingEnd="@dimen/spacing_large"
-            android:paddingBottom="@dimen/spacing_large"
-            android:text="@string/test_phrases_2"
-            android:textColor="@color/secondaryText" />
+            <Button
+                android:id="@+id/btn_favorite"
+                style="@style/Widget.App.Button.IconOnly"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginEnd="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                app:icon="@drawable/ic_favorite"
+                app:iconGravity="textStart"
+                app:iconTint="@color/colorRed" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/translate_ru"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/spacing_large"
+                    android:paddingBottom="@dimen/spacing_medium"
+                    android:text="@string/test_phrases_2"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/translate_tj"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/spacing_large"
+                    android:text="@string/test_phrases_1"
+                    android:textColor="@color/secondaryText" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/translate_ru"
-            android:background="@android:color/darker_gray"
+            android:background="@color/lightGrey"
             android:padding="@dimen/spacing_middle" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>
