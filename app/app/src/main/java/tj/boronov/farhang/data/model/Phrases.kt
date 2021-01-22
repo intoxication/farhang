@@ -28,4 +28,9 @@ class Phrases {
     @ColumnInfo(name = TABLE_PHRASES_COLUMN_SUBCATEGORY_ID)
     @NotNull
     var subcategoryID: Int = 0
+
+    @ColumnInfo(name = TABLE_PHRASES_COLUMN_FAVORITE)
+    @NotNull
+    var favorite: Int = 0
+
 }

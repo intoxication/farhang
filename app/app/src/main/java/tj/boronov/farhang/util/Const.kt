@@ -22,6 +22,7 @@ const val TABLE_SUBCATEGORY_COLUMN_CATEGORY_ID = "category_id"
 
 const val DATABASE_TABLE_PHRASES = "phrases"
 const val TABLE_PHRASES_COLUMN_ID = "_id"
+const val TABLE_PHRASES_COLUMN_FAVORITE = "favorite"
 const val TABLE_PHRASES_COLUMN_CATEGORY_ID = "category_id"
 const val TABLE_PHRASES_COLUMN_SUBCATEGORY_ID = "subcategory_id"
 const val TABLE_PHRASES_COLUMN_TRANSLATE_TJ = "translate_tj"

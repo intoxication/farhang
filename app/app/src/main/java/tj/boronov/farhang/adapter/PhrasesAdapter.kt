@@ -9,14 +9,20 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import tj.boronov.farhang.App
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Phrases
 
@@ -34,6 +40,29 @@ class PhrasesAdapter :
         // Set data to item
         holder.itemView.findViewById<TextView>(R.id.translate_ru).text = phrase?.translateRu
         holder.itemView.findViewById<TextView>(R.id.translate_tj).text = phrase?.translateTj
+
+        // Set isFavorite icon in item
+        holder.itemView.findViewById<Button>(R.id.btn_favorite).background =
+            if (phrase?.favorite == 0) {
+                AppCompatResources.getDrawable(
+                    holder.itemView.context,
+                    R.drawable.ic_favorite
+                )
+            } else {
+                AppCompatResources.getDrawable(
+                    holder.itemView.context,
+                    R.drawable.ic_favorite_true
+                )
+            }
+
+        // Button for add word to favorite
+        holder.itemView.findViewById<Button>(R.id.btn_favorite).setOnClickListener {
+            phrase!!.favorite = (phrase.favorite + 1) % 2
+
+            CoroutineScope(Dispatchers.IO).launch {
+                App.database.phrasebookDao().update(phrase.id, phrase.favorite)
+            }
+        }
 
         // On phrases click
         holder.itemView.setOnClickListener { view ->
@@ -115,7 +144,7 @@ class PhrasesAdapter :
         }
 
         override fun areContentsTheSame(oldItem: Phrases, newItem: Phrases): Boolean {
-            return oldItem.translateRu == newItem.translateRu && oldItem.translateTj == newItem.translateTj
+            return oldItem.favorite == newItem.favorite
         }
     }
 }
