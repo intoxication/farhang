@@ -34,7 +34,7 @@ class NoteFragment : Fragment() {
 
         binding = FragmentNoteBinding.inflate(inflater, container, false)
 
-        noteAdapter = NoteAdapter()
+        noteAdapter = NoteAdapter(requireActivity().supportFragmentManager)
 
         binding.noteList.apply {
             layoutManager = LinearLayoutManager(context)

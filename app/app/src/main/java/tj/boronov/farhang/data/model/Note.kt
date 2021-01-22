@@ -20,4 +20,9 @@ class Note {
     @ColumnInfo(name = TABLE_NOTE_COLUMN_DESCRIPTION)
     @NotNull
     var description: String = ""
+
+
+    @ColumnInfo(name = TABLE_NOTE_COLUMN_FAVORITE)
+    @NotNull
+    var favorite: Int = 0
 }

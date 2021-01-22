@@ -9,7 +9,7 @@ import tj.boronov.farhang.data.model.*
 
 @Database(
     entities = [Word::class, Categories::class, Subcategory::class, Phrases::class, Note::class],
-    version = 2
+    version = 3
 )
 abstract class FarhangDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao

@@ -16,7 +16,7 @@
     <string name="phrasebook">Разговорник</string>
     <string name="note">Ёднома</string>
 
-    <string name="app_version_string">Версия: <b>1.2.0</b></string>
+    <string name="app_version_string">Версия: <b>1.3.0</b></string>
     <string name="github_string">Github: github.com/boronov</string>
     <string name="telegram_string">Telegram: t.me/boronov_11</string>
     <string name="app_count_word">Слов в словаре: <b>191108</b></string>
