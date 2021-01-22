@@ -98,7 +98,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@id/word_panel"
-            android:background="@android:color/darker_gray"
+            android:background="@color/lightGrey"
             android:padding="@dimen/spacing_middle" />
 
     </RelativeLayout>
