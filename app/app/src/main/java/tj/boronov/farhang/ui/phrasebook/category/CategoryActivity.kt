@@ -18,7 +18,6 @@ import tj.boronov.farhang.R
 import tj.boronov.farhang.adapter.ViewPagerFragmentAdapter
 import tj.boronov.farhang.data.model.Categories
 import tj.boronov.farhang.databinding.ActivitySingleCategoryBinding
-import tj.boronov.farhang.ui.InfoDialog
 
 class CategoryActivity : AppCompatActivity() {
 
