@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = binding.navView
 
         val navGraphIds = listOf(
-            R.navigation.nav_search,
+            R.navigation.nav_word,
             R.navigation.nav_favorite,
             R.navigation.nav_phrasebook,
             R.navigation.nav_note

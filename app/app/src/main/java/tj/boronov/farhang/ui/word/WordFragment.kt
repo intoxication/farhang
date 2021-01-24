@@ -1,4 +1,4 @@
-package tj.boronov.farhang.ui.search
+package tj.boronov.farhang.ui.word
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,16 +17,16 @@ import tj.boronov.farhang.R
 import tj.boronov.farhang.databinding.FragmentSearchBinding
 import tj.boronov.farhang.adapter.WordAdapter
 
-class SearchFragment : Fragment() {
+class WordFragment : Fragment() {
 
-    lateinit var viewModel: SearchWordViewModel
+    lateinit var viewModel: WordViewModel
     lateinit var binding: FragmentSearchBinding
     lateinit var wordAdapter: WordAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(SearchWordViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
         retainInstance = true
     }
 

@@ -1,4 +1,4 @@
-package tj.boronov.farhang.ui.search
+package tj.boronov.farhang.ui.word
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +10,7 @@ import androidx.paging.cachedIn
 import tj.boronov.farhang.App
 import tj.boronov.farhang.data.model.Word
 
-class SearchWordViewModel : ViewModel() {
+class WordViewModel : ViewModel() {
 
     var dictionaryID = MutableLiveData<String>("0")
     var query = MutableLiveData<String>("")
