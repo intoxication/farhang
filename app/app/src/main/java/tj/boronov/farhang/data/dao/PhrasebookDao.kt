@@ -26,6 +26,13 @@ interface PhrasebookDao {
     )
     fun getPhrases(categoryID: Int, subcategoryID: Int): PagingSource<Int, Phrases>
 
+    @Query(
+        "SELECT * FROM $DATABASE_TABLE_PHRASES " +
+                "WHERE $TABLE_PHRASES_COLUMN_CATEGORY_ID =:categoryID " +
+                "AND $TABLE_PHRASES_COLUMN_TRANSLATE_RU like :phrase OR $TABLE_PHRASES_COLUMN_TRANSLATE_TJ like :phrase"
+    )
+    fun getPhrases(categoryID: Int, phrase: String): PagingSource<Int, Phrases>
+
     @Query("SELECT * FROM $DATABASE_TABLE_PHRASES WHERE $TABLE_PHRASES_COLUMN_FAVORITE = 1")
     fun getFavorite(): PagingSource<Int, Phrases>
 

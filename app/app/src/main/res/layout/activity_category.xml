@@ -101,4 +101,12 @@
         android:layout_height="match_parent"
         android:layout_below="@id/tab_layout" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/phrases_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/category_panel"
+        android:visibility="gone"
+        tools:listitem="@layout/phrase_item" />
+
 </RelativeLayout>
