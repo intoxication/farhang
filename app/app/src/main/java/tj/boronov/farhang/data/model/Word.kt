@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import org.jetbrains.annotations.NotNull
 import tj.boronov.farhang.util.*
 
-@Entity(tableName = DATABASE_TABLE_NAME)
+@Entity(tableName = DATABASE_TABLE_WORD)
 class Word {
 
     @PrimaryKey(autoGenerate = true)

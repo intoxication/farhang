@@ -67,7 +67,7 @@ class NoteDialog : DialogFragment() {
 
             val clip = ClipData.newPlainText(
                 "",
-                "$noteName\n\n$noteDescription"
+                "$noteName\n$noteDescription"
             )
 
             clipboard.setPrimaryClip(clip)
@@ -79,7 +79,7 @@ class NoteDialog : DialogFragment() {
             sendIntent.action = Intent.ACTION_SEND
             sendIntent.putExtra(
                 Intent.EXTRA_TEXT,
-                "$noteName\n\n$noteDescription"
+                "$noteName\n$noteDescription"
             )
             sendIntent.type = "text/plain"
             ContextCompat.startActivity(

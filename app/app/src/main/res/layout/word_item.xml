@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -10,97 +9,39 @@
     app:cardCornerRadius="0dp"
     app:cardElevation="0dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/word_panel"
+        <TextView
+            android:id="@+id/text_word"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:layout_toStartOf="@id/button_panel">
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:padding="@dimen/spacing_middle"
+            android:text="абрикос"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
 
-            <TextView
-                android:id="@+id/text_word"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:padding="@dimen/spacing_middle"
-                android:text="абрикос"
-                android:textColor="@color/colorPrimary"
-                android:textSize="18sp"
-                android:textStyle="bold|italic" />
-
-            <TextView
-                android:id="@+id/text_definition_word"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/text_word"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:paddingLeft="@dimen/spacing_middle"
-                android:paddingRight="@dimen/spacing_middle"
-                android:paddingBottom="@dimen/spacing_middle"
-                android:text="1. зардолу; 2. дарахти зардолу. 1. зардолу; 2. дарахти зардолу. 1. зардолу;"
-                android:textColor="@color/secondaryText" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/button_panel"
-            android:layout_width="wrap_content"
-            android:layout_height="75dp"
-            android:layout_alignParentEnd="true"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/btn_copy"
-                style="@style/Widget.App.Button.IconOnly"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="@dimen/spacing_middle"
-                android:layout_toEndOf="@id/btn_favorite"
-                android:background="@android:color/transparent"
-                android:gravity="center"
-                app:icon="@drawable/ic_copy"
-                app:iconGravity="textStart"
-                app:iconTint="@color/colorPrimary" />
-
-            <Button
-                android:id="@+id/btn_favorite"
-                style="@style/Widget.App.Button.IconOnly"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="@dimen/spacing_middle"
-                android:layout_toEndOf="@id/btn_share"
-                android:background="@android:color/transparent"
-                android:gravity="center"
-                app:icon="@drawable/ic_favorite"
-                app:iconGravity="textStart"
-                app:iconTint="@color/colorRed" />
-
-            <Button
-                android:id="@+id/btn_share"
-                style="@style/Widget.App.Button.IconOnly"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="@dimen/spacing_middle"
-                android:background="@android:color/transparent"
-                android:gravity="center"
-                app:icon="@drawable/ic_share"
-                app:iconGravity="textStart"
-                app:iconTint="@color/colorPrimary" />
-
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/text_definition_word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/spacing_middle"
+            android:paddingRight="@dimen/spacing_middle"
+            android:paddingBottom="@dimen/spacing_middle"
+            android:text="1. зардолу; 2. дарахти зардолу. 1. зардолу; 2. дарахти зардолу. 1. зардолу;"
+            android:textColor="@color/secondaryText" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/word_panel"
-            android:background="@color/lightGrey"
-            android:padding="@dimen/spacing_middle" />
-
-    </RelativeLayout>
+            android:background="@color/lightGrey" />
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

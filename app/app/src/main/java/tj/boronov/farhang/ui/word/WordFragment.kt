@@ -14,13 +14,13 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tj.boronov.farhang.R
-import tj.boronov.farhang.databinding.FragmentSearchBinding
+import tj.boronov.farhang.databinding.FragmentWordBinding
 import tj.boronov.farhang.adapter.WordAdapter
 
 class WordFragment : Fragment() {
 
     lateinit var viewModel: WordViewModel
-    lateinit var binding: FragmentSearchBinding
+    lateinit var binding: FragmentWordBinding
     lateinit var wordAdapter: WordAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,12 +36,12 @@ class WordFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding = FragmentWordBinding.inflate(inflater, container, false)
 
         binding.btnLang.text =
             resources.getStringArray(R.array.lang)[viewModel.dictionaryID.value!!.toInt()]
 
-        wordAdapter = WordAdapter()
+        wordAdapter = WordAdapter(requireActivity().supportFragmentManager)
         wordAdapter.addLoadStateListener { loadState ->
             if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && wordAdapter.itemCount < 1) {
                 binding.searchWordList.visibility = View.GONE

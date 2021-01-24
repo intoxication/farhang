@@ -35,7 +35,7 @@ class FavoriteFragment : Fragment() {
 
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
 
-        wordAdapter = WordAdapter()
+        wordAdapter = WordAdapter(requireActivity().supportFragmentManager)
         wordAdapter.addLoadStateListener { loadState ->
             if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && wordAdapter.itemCount < 1) {
                 binding.favoriteWordList.visibility = View.GONE
