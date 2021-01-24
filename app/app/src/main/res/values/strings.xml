@@ -54,7 +54,7 @@
     <string name="touch_2">Скопировать и фразу и её перевод</string>
     <string name="touch_3">Добавить фразу в избранные</string>
     <string-array name="lang">
-        <item><string name="any">Любое</string></item>
+        <item>Все</item>
         <item>TJ-RU</item>
         <item>RU-TJ</item>
         <item>EN-TJ</item>
