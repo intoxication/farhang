@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,6 +39,8 @@ class NoteDialog : DialogFragment() {
 
         binding.noteName.text = noteName
         binding.noteDescription.text = noteDescription
+
+        binding.noteDescription.movementMethod = ScrollingMovementMethod()
 
         // Set isFavorite icon in item
         setFavorite(noteFavorite)
