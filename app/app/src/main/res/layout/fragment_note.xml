@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -9,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/spacing_large">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,7 +19,7 @@
             android:layout_marginStart="@dimen/spacing_large"
             android:layout_marginTop="@dimen/spacing_medium"
             android:layout_marginEnd="@dimen/spacing_large"
-            android:layout_marginBottom="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_middle"
             android:orientation="horizontal">
 
             <ImageView
@@ -35,6 +37,33 @@
                 android:text="@string/note_title"
                 android:textColor="@android:color/white" />
         </LinearLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_middle"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:paddingTop="@dimen/spacing_medium"
+            app:cardCornerRadius="@dimen/spacing_medium"
+            app:cardElevation="0dp">
+
+            <EditText
+                android:id="@+id/search_note"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/spacing_middle"
+                android:background="@android:color/transparent"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="@string/search"
+                android:paddingEnd="@dimen/spacing_middle"
+                android:singleLine="true"
+                android:textColorHint="@color/secondaryText" />
+
+        </androidx.cardview.widget.CardView>
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -47,4 +76,13 @@
         android:layout_alignParentBottom="true"
         tools:listitem="@layout/note_item" />
 
+    <include
+        android:id="@+id/layout_no_note"
+        layout="@layout/layout_no_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/note_title"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

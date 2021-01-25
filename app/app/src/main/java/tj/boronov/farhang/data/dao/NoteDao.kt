@@ -22,4 +22,8 @@ interface NoteDao {
 
     @Query("UPDATE $DATABASE_TABLE_NOTE SET favorite =:favorite WHERE _id =:noteID;")
     suspend fun update(noteID: Int, favorite: Int)
+
+    @Query("SELECT * FROM $DATABASE_TABLE_NOTE WHERE $TABLE_NOTE_COLUMN_NAME LIKE :noteName")
+    fun searchNote(noteName: String): PagingSource<Int, Note>
+
 }
