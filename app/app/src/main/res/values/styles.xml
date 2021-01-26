@@ -25,11 +25,6 @@
         <item name="materialThemeOverlay">@style/LangButtonThemeOverlay</item>
     </style>
 
-    <style name="FavoriteButtonStyle" parent="Widget.App.Button.IconOnly">
-        <item name="colorPrimary">@color/colorFavorite</item>
-        <item name="colorPrimaryDark">@color/colorFavorite</item>
-    </style>
-
     <style name="LangButtonThemeOverlay">
         <item name="colorPrimary">@android:color/white</item>
     </style>
