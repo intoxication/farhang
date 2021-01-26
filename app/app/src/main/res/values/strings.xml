@@ -17,11 +17,6 @@
     <string name="note">Ёднома</string>
 
     <string name="app_version_string">Версия: <b>1.3.0</b></string>
-    <string name="github_string">Github: github.com/boronov</string>
-    <string name="telegram_string">Telegram: t.me/boronov_11</string>
-    <string name="app_count_word">Слов в словаре: <b>191108</b></string>
-    <string name="app_count_phrases">Фраз в разговорнике: <b>2450</b></string>
-    <string name="app_count_note">Правил в ёдноме: <b>150</b></string>
     <string name="rate_app">Оценить приложение</string>
 
     <string name="inter_word">Введите слово</string>
@@ -53,6 +48,8 @@
     <string name="touch_1">Скопировать фразу или её перевод</string>
     <string name="touch_2">Скопировать и фразу и её перевод</string>
     <string name="touch_3">Добавить фразу в избранные</string>
+    <string name="github_logo">github logo</string>
+    <string name="telegram_logo">telegram logo</string>
     <string-array name="lang">
         <item>Все</item>
         <item>TJ-RU</item>

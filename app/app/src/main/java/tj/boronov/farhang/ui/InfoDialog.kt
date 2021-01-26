@@ -18,8 +18,23 @@ class InfoDialog : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DialogInfoBinding.inflate(layoutInflater, container, false)
+
+        //Dismiss dialog
+        binding.btnClose.setOnClickListener {
+            dismiss()
+        }
+
+        // Go to Github
+        binding.goToGithub.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/boronov")))
+        }
+
+        // Go to Telegram
+        binding.goToTelegram.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/boronov_11")))
+        }
 
         // Rate app button
         binding.rateApp.setOnClickListener {
@@ -41,7 +56,6 @@ class InfoDialog : DialogFragment() {
                 )
             }
         }
-
         return binding.root
     }
 }
