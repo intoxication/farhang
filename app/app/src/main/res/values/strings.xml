@@ -37,8 +37,8 @@
     <!-- Empty list -->
     <string name="no_data">Такого слова нет :(</string>
     <string name="no_data_text_below">Попробуйте ввести другое слово</string>
-    <string name="no_data_favorite">Нет избранных слов :(</string>
-    <string name="no_data_text_below_favorite">Для того чтобы здесь появились записи выберете слово и нажмите на сердечко</string>
+    <string name="no_data_favorite">Нет избранных записей :(</string>
+    <string name="no_data_text_below_favorite">Для того чтобы здесь появились записи выберите элемент и нажмите на звездочку</string>
 
     <!-- Type of translate -->
     <string name="choose_lang">Направление перевода:</string>

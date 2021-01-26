@@ -5,25 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.paging.LoadState
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
-import tj.boronov.farhang.adapter.WordAdapter
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
+import tj.boronov.farhang.adapter.ViewPagerFavoriteAdapter
 import tj.boronov.farhang.databinding.FragmentFavoriteBinding
 
 class FavoriteFragment : Fragment() {
 
-    lateinit var viewModel: FavoriteWordViewModel
     lateinit var binding: FragmentFavoriteBinding
-    lateinit var wordAdapter: WordAdapter
+    var favoriteNameList = listOf("Словарь", "Разговорник", "Ёднома")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        viewModel = ViewModelProvider(this).get(FavoriteWordViewModel::class.java)
         retainInstance = true
     }
 
@@ -31,32 +24,16 @@ class FavoriteFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
         binding = FragmentFavoriteBinding.inflate(inflater, container, false)
 
-        wordAdapter = WordAdapter(requireActivity().supportFragmentManager)
-        wordAdapter.addLoadStateListener { loadState ->
-            if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && wordAdapter.itemCount < 1) {
-                binding.favoriteWordList.visibility = View.GONE
-                binding.layoutNoDataFavorite.root.visibility = View.VISIBLE
-            } else {
-                binding.favoriteWordList.visibility = View.VISIBLE
-                binding.layoutNoDataFavorite.root.visibility = View.GONE
-            }
-        }
+        binding.viewPager.adapter = ViewPagerFavoriteAdapter(requireActivity())
+        TabLayoutMediator(
+            binding.tabLayout, binding.viewPager
+        ) { tab: TabLayout.Tab, position: Int ->
+            tab.text = favoriteNameList[position]
+        }.attach()
 
-        binding.favoriteWordList.apply {
-            layoutManager = LinearLayoutManager(context)
-            setHasFixedSize(true)
-            adapter = wordAdapter
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.flow.collectLatest {
-                wordAdapter.submitData(it)
-            }
-        }
         return binding.root
     }
 }
