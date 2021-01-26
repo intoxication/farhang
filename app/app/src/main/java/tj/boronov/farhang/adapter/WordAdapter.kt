@@ -1,14 +1,28 @@
 package tj.boronov.farhang.adapter
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentManager
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import tj.boronov.farhang.App
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Word
 import tj.boronov.farhang.ui.word.WordDialog
@@ -40,6 +54,67 @@ class WordAdapter(_fragmentManager: FragmentManager) :
             wordDialog.arguments = data
 
             wordDialog.show(fragmentManager, "word_dialog")
+        }
+
+        // Set isFavorite icon in item
+        holder.itemView.findViewById<Button>(R.id.btn_favorite).background =
+            if (word?.favorite == 0) {
+                AppCompatResources.getDrawable(
+                    holder.itemView.context,
+                    R.drawable.ic_favorite
+                )
+            } else {
+                AppCompatResources.getDrawable(
+                    holder.itemView.context,
+                    R.drawable.ic_favorite_true
+                )
+            }
+
+        // Button for copy word to clipboard
+        holder.itemView.findViewById<Button>(R.id.btn_copy).setOnClickListener {
+            Snackbar.make(
+                it.rootView,
+                it.context.resources.getString(R.string.copy),
+                Snackbar.LENGTH_SHORT
+            )
+                .setTextColor(Color.WHITE)
+                .setBackgroundTint(ContextCompat.getColor(it.context, R.color.colorGreen))
+                .show()
+
+            val clipboard: ClipboardManager =
+                it.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+            val clip = ClipData.newPlainText(
+                "",
+                word?.word.toString() + " = " + word?.definition.toString()
+            )
+
+            clipboard.setPrimaryClip(clip)
+        }
+
+        // Button to send word to others
+        holder.itemView.findViewById<Button>(R.id.btn_share).setOnClickListener {
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                word?.word.toString() + " = " + word?.definition.toString()
+            )
+            sendIntent.type = "text/plain"
+            startActivity(
+                it.context,
+                Intent.createChooser(sendIntent, it.resources.getString(R.string.share)),
+                null
+            )
+        }
+
+        // Button for add word to favorite
+        holder.itemView.findViewById<Button>(R.id.btn_favorite).setOnClickListener {
+            word!!.favorite = (word.favorite + 1) % 2
+
+            CoroutineScope(Dispatchers.IO).launch {
+                App.database.wordDao().update(word.id, word.favorite)
+            }
         }
     }
 

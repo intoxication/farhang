@@ -10,7 +10,6 @@ import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
@@ -29,7 +28,7 @@ class WordDialog : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DialogWordBinding.inflate(layoutInflater, container, false)
 
         val wordID = requireArguments().getInt("word_id", 0)
@@ -41,6 +40,7 @@ class WordDialog : DialogFragment() {
         binding.textDefinitionWord.text = wordDefinition
 
         binding.textDefinitionWord.movementMethod = ScrollingMovementMethod()
+
         // Set isFavorite icon in item
         setFavorite(wordFavorite)
 

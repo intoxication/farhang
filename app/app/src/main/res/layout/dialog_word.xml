@@ -31,23 +31,19 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="@dimen/spacing_middle"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            app:icon="@drawable/ic_copy"
-            app:iconGravity="textStart"
-            app:iconTint="@color/colorPrimary" />
+            android:background="@drawable/ic_copy"
+            android:backgroundTint="@color/colorPrimary"
+            android:gravity="center" />
 
         <Button
             android:id="@+id/btn_favorite"
             style="@style/Widget.App.Button.IconOnly"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginEnd="@dimen/spacing_middle"
-            android:background="@android:color/transparent"
+            android:background="@drawable/ic_favorite"
             android:gravity="center"
-            app:icon="@drawable/ic_favorite"
-            app:iconGravity="textStart"
-            app:iconTint="@color/colorRed" />
+            app:backgroundTint="@color/colorFavorite" />
 
         <Button
             android:id="@+id/btn_share"
@@ -55,11 +51,9 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="@dimen/spacing_middle"
-            android:background="@android:color/transparent"
-            android:gravity="center"
-            app:icon="@drawable/ic_share"
-            app:iconGravity="textStart"
-            app:iconTint="@color/colorPrimary" />
+            android:background="@drawable/ic_share"
+            android:backgroundTint="@color/colorPrimary"
+            android:gravity="center" />
 
     </LinearLayout>
 
