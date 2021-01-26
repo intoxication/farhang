@@ -50,6 +50,7 @@
     <string name="touch_3">Добавить фразу в избранные</string>
     <string name="github_logo">github logo</string>
     <string name="telegram_logo">telegram logo</string>
+    <string name="close">Закрыть</string>
     <string-array name="lang">
         <item>Все</item>
         <item>TJ-RU</item>

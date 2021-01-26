@@ -25,11 +25,16 @@ class NoteDialog : DialogFragment() {
 
     lateinit var binding: DialogNoteBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NORMAL, R.style.DialogStyle)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DialogNoteBinding.inflate(layoutInflater, container, false)
 
         val noteID = requireArguments().getInt("note_id", 0)
@@ -41,6 +46,10 @@ class NoteDialog : DialogFragment() {
         binding.noteDescription.text = noteDescription
 
         binding.noteDescription.movementMethod = ScrollingMovementMethod()
+
+        binding.btnClose.setOnClickListener {
+            dismiss()
+        }
 
         // Set isFavorite icon in item
         setFavorite(noteFavorite)
@@ -57,7 +66,7 @@ class NoteDialog : DialogFragment() {
         // Copy to buffer
         binding.btnCopy.setOnClickListener {
             Snackbar.make(
-                requireActivity().findViewById(android.R.id.content),
+                it,
                 it.context.resources.getString(R.string.copy),
                 Snackbar.LENGTH_SHORT
             )
