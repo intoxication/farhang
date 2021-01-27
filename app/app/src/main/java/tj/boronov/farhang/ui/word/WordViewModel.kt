@@ -12,21 +12,15 @@ import tj.boronov.farhang.data.model.Word
 
 class WordViewModel : ViewModel() {
 
-    var dictionaryID = MutableLiveData<String>("0")
-    var query = MutableLiveData<String>("")
+    var dictionaryID = MutableLiveData("0")
+    var query = MutableLiveData("")
 
     private var pagingSource: PagingSource<Int, Word>? = null
 
     val flow = Pager(
         PagingConfig(pageSize = 30, enablePlaceholders = true)
     ) {
-        if (query.value.isNullOrEmpty() || query.value.isNullOrBlank()) {
-            // While search word is empty
-            App.database.wordDao().getByWord("", -1)
-                .also {
-                    pagingSource = it
-                }
-        } else if (dictionaryID.value != "0") {
+        if (dictionaryID.value != "0") {
             App.database.wordDao().getByWord("${query.value}%", dictionaryID.value!!.toInt())
                 .also {
                     pagingSource = it

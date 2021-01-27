@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Note
 import tj.boronov.farhang.ui.note.NoteDialog

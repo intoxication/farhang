@@ -10,7 +10,6 @@ import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
@@ -19,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import tj.boronov.farhang.App
 import tj.boronov.farhang.R
+import tj.boronov.farhang.data.model.Note
 import tj.boronov.farhang.databinding.DialogNoteBinding
 
 class NoteDialog : DialogFragment() {
@@ -37,13 +37,15 @@ class NoteDialog : DialogFragment() {
     ): View {
         binding = DialogNoteBinding.inflate(layoutInflater, container, false)
 
-        val noteID = requireArguments().getInt("note_id", 0)
-        val noteName = requireArguments().getString("note_name").toString()
-        val noteDescription = requireArguments().getString("note_description").toString()
-        var noteFavorite = requireArguments().getInt("note_favorite", 0)
+        val note = Note()
+        note.id = requireArguments().getInt("note_id", 0)
+        note.name = requireArguments().getString("note_name").toString()
+        note.description = requireArguments().getString("note_description").toString()
+        note.favorite = requireArguments().getInt("note_favorite", 0)
 
-        binding.noteName.text = noteName
-        binding.noteDescription.text = noteDescription
+
+        binding.noteName.text = note.name
+        binding.noteDescription.text = note.description
 
         binding.noteDescription.movementMethod = ScrollingMovementMethod()
 
@@ -52,14 +54,14 @@ class NoteDialog : DialogFragment() {
         }
 
         // Set isFavorite icon in item
-        setFavorite(noteFavorite)
+        setFavorite(note.favorite)
 
         // Change favorite status
         binding.btnFavorite.setOnClickListener {
-            noteFavorite = (noteFavorite + 1) % 2
-            setFavorite(noteFavorite)
+            note.favorite = (note.favorite + 1) % 2
+            setFavorite(note.favorite)
             lifecycleScope.launch {
-                App.database.noteDao().update(noteID, noteFavorite)
+                App.database.noteDao().update(note)
             }
         }
 
@@ -79,7 +81,7 @@ class NoteDialog : DialogFragment() {
 
             val clip = ClipData.newPlainText(
                 "",
-                "$noteName\n$noteDescription"
+                "${note.name}\n${note.description}"
             )
 
             clipboard.setPrimaryClip(clip)
@@ -91,7 +93,7 @@ class NoteDialog : DialogFragment() {
             sendIntent.action = Intent.ACTION_SEND
             sendIntent.putExtra(
                 Intent.EXTRA_TEXT,
-                "$noteName\n$noteDescription"
+                "${note.name}\n${note.description}"
             )
             sendIntent.type = "text/plain"
             ContextCompat.startActivity(

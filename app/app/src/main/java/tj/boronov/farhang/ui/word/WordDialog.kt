@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import tj.boronov.farhang.App
 import tj.boronov.farhang.R
+import tj.boronov.farhang.data.model.Word
 import tj.boronov.farhang.databinding.DialogWordBinding
 
 class WordDialog : DialogFragment() {
@@ -36,13 +37,16 @@ class WordDialog : DialogFragment() {
     ): View {
         binding = DialogWordBinding.inflate(layoutInflater, container, false)
 
-        val wordID = requireArguments().getInt("word_id", 0)
-        val wordText = requireArguments().getString("text_word").toString()
-        val wordDefinition = requireArguments().getString("definition_word").toString()
-        var wordFavorite = requireArguments().getInt("word_favorite", 0)
+        val word = Word()
+        word.id = requireArguments().getInt("word_id", 0)
+        word.word = requireArguments().getString("text_word").toString()
+        word.definition = requireArguments().getString("definition_word").toString()
+        word.favorite = requireArguments().getInt("word_favorite", 0)
+        word.dictionaryID = requireArguments().getInt("word_dictionaryID", 0)
 
-        binding.textWord.text = wordText
-        binding.textDefinitionWord.text = wordDefinition
+
+        binding.textWord.text = word.word
+        binding.textDefinitionWord.text = word.definition
 
         binding.textDefinitionWord.movementMethod = ScrollingMovementMethod()
 
@@ -50,14 +54,14 @@ class WordDialog : DialogFragment() {
             dismiss()
         }
         // Set isFavorite icon in item
-        setFavorite(wordFavorite)
+        setFavorite(word.favorite)
 
         // Change favorite status
         binding.btnFavorite.setOnClickListener {
-            wordFavorite = (wordFavorite + 1) % 2
-            setFavorite(wordFavorite)
+            word.favorite = (word.favorite + 1) % 2
+            setFavorite(word.favorite)
             lifecycleScope.launch {
-                App.database.wordDao().update(wordID, wordFavorite)
+                App.database.wordDao().update(word)
             }
         }
 
@@ -77,7 +81,7 @@ class WordDialog : DialogFragment() {
 
             val clip = ClipData.newPlainText(
                 "",
-                "$wordText\n$wordDefinition"
+                "${word.word}\n${word.definition}"
             )
 
             clipboard.setPrimaryClip(clip)
@@ -89,7 +93,7 @@ class WordDialog : DialogFragment() {
             sendIntent.action = Intent.ACTION_SEND
             sendIntent.putExtra(
                 Intent.EXTRA_TEXT,
-                "$wordText\n$wordDefinition"
+                "${word.word}\n${word.definition}"
             )
             sendIntent.type = "text/plain"
             ContextCompat.startActivity(

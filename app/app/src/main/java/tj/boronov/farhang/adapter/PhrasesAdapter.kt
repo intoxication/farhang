@@ -6,13 +6,11 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.PopupMenu
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
@@ -60,7 +58,7 @@ class PhrasesAdapter :
             phrase!!.favorite = (phrase.favorite + 1) % 2
 
             CoroutineScope(Dispatchers.IO).launch {
-                App.database.phrasebookDao().update(phrase.id, phrase.favorite)
+                App.database.phrasebookDao().update(phrase)
             }
         }
 

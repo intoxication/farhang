@@ -13,6 +13,9 @@ interface NoteDao {
     @Query("SELECT * FROM $DATABASE_TABLE_NOTE")
     fun getNote(): PagingSource<Int, Note>
 
+    @Query("SELECT * FROM $DATABASE_TABLE_NOTE WHERE $TABLE_NOTE_COLUMN_ID =:noteID")
+    suspend fun getNoteById(noteID: Int): Note
+
     @Query(
         "SELECT * FROM $DATABASE_TABLE_NOTE" +
                 " WHERE $TABLE_NOTE_COLUMN_FAVORITE = 1" +
@@ -20,8 +23,8 @@ interface NoteDao {
     )
     fun getFavorite(): PagingSource<Int, Note>
 
-    @Query("UPDATE $DATABASE_TABLE_NOTE SET favorite =:favorite WHERE _id =:noteID;")
-    suspend fun update(noteID: Int, favorite: Int)
+    @Update
+    suspend fun update(note: Note)
 
     @Query("SELECT * FROM $DATABASE_TABLE_NOTE WHERE $TABLE_NOTE_COLUMN_NAME LIKE :noteName")
     fun searchNote(noteName: String): PagingSource<Int, Note>

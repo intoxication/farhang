@@ -29,6 +29,6 @@ interface WordDao {
     )
     fun getByWord(word: String, dictionaryID: Int): PagingSource<Int, Word>
 
-    @Query("UPDATE $DATABASE_TABLE_WORD SET favorite =:favorite WHERE _id =:wordID;")
-    suspend fun update(wordID: Int, favorite: Int)
+    @Update
+    suspend fun update(word: Word)
 }

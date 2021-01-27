@@ -1,9 +1,10 @@
 package tj.boronov.farhang.data.dao
 
 import androidx.paging.PagingSource
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Query
+import androidx.room.Update
 import tj.boronov.farhang.data.model.Categories
-import tj.boronov.farhang.data.model.Note
 import tj.boronov.farhang.data.model.Phrases
 import tj.boronov.farhang.data.model.Subcategory
 import tj.boronov.farhang.util.*
@@ -36,7 +37,7 @@ interface PhrasebookDao {
     @Query("SELECT * FROM $DATABASE_TABLE_PHRASES WHERE $TABLE_PHRASES_COLUMN_FAVORITE = 1")
     fun getFavorite(): PagingSource<Int, Phrases>
 
-    @Query("UPDATE $DATABASE_TABLE_PHRASES SET favorite =:favorite WHERE _id =:phraseID;")
-    suspend fun update(phraseID: Int, favorite: Int)
+    @Update
+    suspend fun update(phrases: Phrases)
 
 }

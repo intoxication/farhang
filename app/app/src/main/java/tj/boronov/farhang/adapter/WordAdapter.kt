@@ -50,6 +50,7 @@ class WordAdapter(_fragmentManager: FragmentManager) :
             data.putString("definition_word", word?.definition)
             data.putInt("word_id", word?.id ?: 0)
             data.putInt("word_favorite", word?.favorite ?: 0)
+            data.putInt("word_dictionaryID", word?.dictionaryID ?: 0)
 
             wordDialog.arguments = data
 
@@ -113,7 +114,7 @@ class WordAdapter(_fragmentManager: FragmentManager) :
             word!!.favorite = (word.favorite + 1) % 2
 
             CoroutineScope(Dispatchers.IO).launch {
-                App.database.wordDao().update(word.id, word.favorite)
+                App.database.wordDao().update(word)
             }
         }
     }
