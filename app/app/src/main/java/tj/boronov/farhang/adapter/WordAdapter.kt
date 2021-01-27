@@ -58,18 +58,7 @@ class WordAdapter(_fragmentManager: FragmentManager) :
         }
 
         // Set isFavorite icon in item
-        holder.itemView.findViewById<Button>(R.id.btn_favorite).background =
-            if (word?.favorite == 0) {
-                AppCompatResources.getDrawable(
-                    holder.itemView.context,
-                    R.drawable.ic_favorite
-                )
-            } else {
-                AppCompatResources.getDrawable(
-                    holder.itemView.context,
-                    R.drawable.ic_favorite_true
-                )
-            }
+        setFavorite(word?.favorite ?: 0, holder)
 
         // Button for copy word to clipboard
         holder.itemView.findViewById<Button>(R.id.btn_copy).setOnClickListener {
@@ -112,6 +101,8 @@ class WordAdapter(_fragmentManager: FragmentManager) :
         // Button for add word to favorite
         holder.itemView.findViewById<Button>(R.id.btn_favorite).setOnClickListener {
             word!!.favorite = (word.favorite + 1) % 2
+            setFavorite(word.favorite, holder)
+
             CoroutineScope(Dispatchers.IO).launch {
                 App.database.wordDao().update(word)
             }
@@ -136,5 +127,21 @@ class WordAdapter(_fragmentManager: FragmentManager) :
         override fun areContentsTheSame(oldItem: Word, newItem: Word): Boolean {
             return oldItem.favorite == newItem.favorite
         }
+    }
+
+    private fun setFavorite(isFavorite: Int, holder: WordViewHolder) {
+        holder.itemView.findViewById<Button>(R.id.btn_favorite).background =
+            if (isFavorite == 0) {
+                AppCompatResources.getDrawable(
+                    holder.itemView.context,
+                    R.drawable.ic_favorite
+                )
+            } else {
+                AppCompatResources.getDrawable(
+                    holder.itemView.context,
+                    R.drawable.ic_favorite_true
+                )
+            }
+
     }
 }

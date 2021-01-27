@@ -15,11 +15,11 @@ import tj.boronov.farhang.data.model.Categories
 import tj.boronov.farhang.ui.phrasebook.category.CategoryActivity
 
 class CategoriesAdapter :
-    PagingDataAdapter<Categories, CategoriesAdapter.WordViewHolder>(
+    PagingDataAdapter<Categories, CategoriesAdapter.ViewHolder>(
         CategoriesComparator
     ) {
 
-    override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // Get data
         val category = getItem(position)
 
@@ -47,14 +47,14 @@ class CategoriesAdapter :
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
-        return WordViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.category_list_item, parent, false)
         )
     }
 
-    class WordViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     // Categories comparator
     object CategoriesComparator : DiffUtil.ItemCallback<Categories>() {

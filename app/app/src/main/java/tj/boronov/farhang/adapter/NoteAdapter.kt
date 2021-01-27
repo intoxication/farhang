@@ -15,13 +15,13 @@ import tj.boronov.farhang.data.model.Note
 import tj.boronov.farhang.ui.note.NoteDialog
 
 class NoteAdapter(_fragmentManager: FragmentManager) :
-    PagingDataAdapter<Note, NoteAdapter.WordViewHolder>(
+    PagingDataAdapter<Note, NoteAdapter.NoteViewHolder>(
         NoteComparator
     ) {
     private val fragmentManager = _fragmentManager
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         // Get data
         val note = getItem(position)
 
@@ -45,14 +45,14 @@ class NoteAdapter(_fragmentManager: FragmentManager) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
-        return WordViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
+        return NoteViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.note_item, parent, false)
         )
     }
 
-    class WordViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    class NoteViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     // Notes comparator
     object NoteComparator : DiffUtil.ItemCallback<Note>() {

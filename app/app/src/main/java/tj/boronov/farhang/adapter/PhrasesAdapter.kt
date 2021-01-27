@@ -26,12 +26,12 @@ import tj.boronov.farhang.data.model.Phrases
 
 
 class PhrasesAdapter :
-    PagingDataAdapter<Phrases, PhrasesAdapter.WordViewHolder>(
+    PagingDataAdapter<Phrases, PhrasesAdapter.PhrasesViewHolder>(
         PhrasesComparator
     ) {
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PhrasesViewHolder, position: Int) {
         // Get data
         val phrase = getItem(position)
 
@@ -40,22 +40,12 @@ class PhrasesAdapter :
         holder.itemView.findViewById<TextView>(R.id.translate_tj).text = phrase?.translateTj
 
         // Set isFavorite icon in item
-        holder.itemView.findViewById<Button>(R.id.btn_favorite).background =
-            if (phrase?.favorite == 0) {
-                AppCompatResources.getDrawable(
-                    holder.itemView.context,
-                    R.drawable.ic_favorite
-                )
-            } else {
-                AppCompatResources.getDrawable(
-                    holder.itemView.context,
-                    R.drawable.ic_favorite_true
-                )
-            }
+        setFavorite(phrase?.favorite ?: 0, holder)
 
         // Button for add word to favorite
         holder.itemView.findViewById<Button>(R.id.btn_favorite).setOnClickListener {
             phrase!!.favorite = (phrase.favorite + 1) % 2
+            setFavorite(phrase.favorite, holder)
 
             CoroutineScope(Dispatchers.IO).launch {
                 App.database.phrasebookDao().update(phrase)
@@ -126,14 +116,30 @@ class PhrasesAdapter :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
-        return WordViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhrasesViewHolder {
+        return PhrasesViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.phrase_item, parent, false)
         )
     }
 
-    class WordViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    private fun setFavorite(isFavorite: Int, holder: PhrasesViewHolder) {
+        holder.itemView.findViewById<Button>(R.id.btn_favorite).background =
+            if (isFavorite == 0) {
+                AppCompatResources.getDrawable(
+                    holder.itemView.context,
+                    R.drawable.ic_favorite
+                )
+            } else {
+                AppCompatResources.getDrawable(
+                    holder.itemView.context,
+                    R.drawable.ic_favorite_true
+                )
+            }
+
+    }
+
+    class PhrasesViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     // Phrases comparator
     object PhrasesComparator : DiffUtil.ItemCallback<Phrases>() {
