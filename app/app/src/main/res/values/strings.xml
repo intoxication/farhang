@@ -40,9 +40,6 @@
     <string name="no_data_favorite">Нет избранных записей :(</string>
     <string name="no_data_text_below_favorite">Для того чтобы здесь появились записи выберите элемент и нажмите на звездочку</string>
 
-    <!-- Type of translate -->
-    <string name="choose_lang">Направление перевода:</string>
-    <string name="ru_tj_string">RU-TJ</string>
     <string name="empty_box">empty box</string>
     <string name="inter_phrases">Введите фразу</string>
     <string name="touch_1">Скопировать фразу или её перевод</string>
@@ -51,6 +48,10 @@
     <string name="github_logo">github logo</string>
     <string name="telegram_logo">telegram logo</string>
     <string name="close">Закрыть</string>
+
+    <!-- Type of translate -->
+    <string name="ru_tj_string">RU-TJ</string>
+    <string name="choose_lang">Направление перевода:</string>
     <string-array name="lang">
         <item>Все</item>
         <item>TJ-RU</item>

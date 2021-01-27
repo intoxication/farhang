@@ -34,7 +34,7 @@ class WordFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentWordBinding.inflate(inflater, container, false)
 
@@ -51,6 +51,7 @@ class WordFragment : Fragment() {
                 binding.layoutNoData.root.visibility = View.GONE
             }
         }
+
 
         lifecycleScope.launch {
             viewModel.flow.collectLatest {

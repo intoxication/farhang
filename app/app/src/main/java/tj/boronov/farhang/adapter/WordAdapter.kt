@@ -112,7 +112,6 @@ class WordAdapter(_fragmentManager: FragmentManager) :
         // Button for add word to favorite
         holder.itemView.findViewById<Button>(R.id.btn_favorite).setOnClickListener {
             word!!.favorite = (word.favorite + 1) % 2
-
             CoroutineScope(Dispatchers.IO).launch {
                 App.database.wordDao().update(word)
             }

@@ -21,13 +21,6 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
-    <style name="LangButtonStyle" parent="Widget.MaterialComponents.Button.Icon">
-        <item name="materialThemeOverlay">@style/LangButtonThemeOverlay</item>
-    </style>
-
-    <style name="LangButtonThemeOverlay">
-        <item name="colorPrimary">@android:color/white</item>
-    </style>
 
     <style name="DialogStyle" parent="Theme.MaterialComponents.Light.Dialog">
         <item name="android:windowNoTitle">true</item>
