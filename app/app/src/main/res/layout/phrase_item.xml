@@ -42,20 +42,21 @@
                     android:id="@+id/translate_ru"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
                     android:paddingTop="@dimen/spacing_large"
                     android:paddingBottom="@dimen/spacing_medium"
                     android:text="@string/test_phrases_2"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="18sp"
-                    android:textStyle="bold|italic" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/translate_tj"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
                     android:paddingBottom="@dimen/spacing_large"
                     android:text="@string/test_phrases_1"
-                    android:textColor="@color/secondaryText" />
+                    android:textColor="@color/primaryText" />
             </LinearLayout>
 
         </LinearLayout>

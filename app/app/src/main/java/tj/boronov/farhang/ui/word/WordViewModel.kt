@@ -8,20 +8,22 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.cachedIn
 import tj.boronov.farhang.App
+import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Word
 
 class WordViewModel : ViewModel() {
 
-    var dictionaryID = MutableLiveData("0")
+    var direct =
+        MutableLiveData<Pair<String, Int>>(Pair(App.instance.getString(R.string.direct_all), 0))
     var query = MutableLiveData("")
 
-    private var pagingSource: PagingSource<Int, Word>? = null
+    var pagingSource: PagingSource<Int, Word>? = null
 
     val flow = Pager(
         PagingConfig(pageSize = 30, enablePlaceholders = true)
     ) {
-        if (dictionaryID.value != "0") {
-            App.database.wordDao().getByWord("${query.value}%", dictionaryID.value!!.toInt())
+        if (direct.value?.second != 0) {
+            App.database.wordDao().getByWord("${query.value}%", direct.value?.second ?: 0)
                 .also {
                     pagingSource = it
                 }
@@ -32,9 +34,4 @@ class WordViewModel : ViewModel() {
         }
     }.flow.cachedIn(viewModelScope)
 
-    fun filterDatabase(_word: String, _dictionaryID: String) {
-        query.value = _word
-        dictionaryID.value = _dictionaryID
-        pagingSource?.invalidate()
-    }
 }

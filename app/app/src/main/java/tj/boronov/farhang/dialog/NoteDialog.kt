@@ -1,4 +1,4 @@
-package tj.boronov.farhang.ui.word
+package tj.boronov.farhang.dialog
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -18,12 +18,12 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import tj.boronov.farhang.App
 import tj.boronov.farhang.R
-import tj.boronov.farhang.data.model.Word
-import tj.boronov.farhang.databinding.DialogWordBinding
+import tj.boronov.farhang.data.model.Note
+import tj.boronov.farhang.databinding.DialogNoteBinding
 
-class WordDialog : DialogFragment() {
+class NoteDialog : DialogFragment() {
 
-    lateinit var binding: DialogWordBinding
+    lateinit var binding: DialogNoteBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,33 +35,33 @@ class WordDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DialogWordBinding.inflate(layoutInflater, container, false)
+        binding = DialogNoteBinding.inflate(layoutInflater, container, false)
 
-        val word = Word()
-        word.id = requireArguments().getInt("word_id", 0)
-        word.word = requireArguments().getString("text_word").toString()
-        word.definition = requireArguments().getString("definition_word").toString()
-        word.favorite = requireArguments().getInt("word_favorite", 0)
-        word.dictionaryID = requireArguments().getInt("word_dictionaryID", 0)
+        val note = Note()
+        note.id = requireArguments().getInt("note_id", 0)
+        note.name = requireArguments().getString("note_name").toString()
+        note.description = requireArguments().getString("note_description").toString()
+        note.favorite = requireArguments().getInt("note_favorite", 0)
 
 
-        binding.textWord.text = word.word
-        binding.textDefinitionWord.text = word.definition
+        binding.noteName.text = note.name
+        binding.noteDescription.text = note.description
 
-        binding.textDefinitionWord.movementMethod = ScrollingMovementMethod()
+        binding.noteDescription.movementMethod = ScrollingMovementMethod()
 
         binding.btnClose.setOnClickListener {
             dismiss()
         }
+
         // Set isFavorite icon in item
-        setFavorite(word.favorite)
+        setFavorite(note.favorite)
 
         // Change favorite status
         binding.btnFavorite.setOnClickListener {
-            word.favorite = (word.favorite + 1) % 2
-            setFavorite(word.favorite)
+            note.favorite = (note.favorite + 1) % 2
+            setFavorite(note.favorite)
             lifecycleScope.launch {
-                App.database.wordDao().update(word)
+                App.database.noteDao().update(note)
             }
         }
 
@@ -81,7 +81,7 @@ class WordDialog : DialogFragment() {
 
             val clip = ClipData.newPlainText(
                 "",
-                "${word.word}\n${word.definition}"
+                "${note.name}\n${note.description}"
             )
 
             clipboard.setPrimaryClip(clip)
@@ -93,7 +93,7 @@ class WordDialog : DialogFragment() {
             sendIntent.action = Intent.ACTION_SEND
             sendIntent.putExtra(
                 Intent.EXTRA_TEXT,
-                "${word.word}\n${word.definition}"
+                "${note.name}\n${note.description}"
             )
             sendIntent.type = "text/plain"
             ContextCompat.startActivity(
@@ -119,5 +119,4 @@ class WordDialog : DialogFragment() {
                 )
             }
     }
-
 }

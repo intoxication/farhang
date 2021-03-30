@@ -3,9 +3,9 @@ package tj.boronov.farhang.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import tj.boronov.farhang.ui.favorite.NoteFavoriteFragment
-import tj.boronov.farhang.ui.favorite.PhrasesFavoriteFragment
-import tj.boronov.farhang.ui.favorite.WordFavoriteFragment
+import tj.boronov.farhang.ui.favorite.note.NoteFavoriteFragment
+import tj.boronov.farhang.ui.favorite.phrases.PhrasesFavoriteFragment
+import tj.boronov.farhang.ui.favorite.word.WordFavoriteFragment
 
 class ViewPagerFavoriteAdapter(
     _fragmentActivity: FragmentActivity

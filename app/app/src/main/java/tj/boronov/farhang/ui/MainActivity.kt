@@ -3,28 +3,26 @@ package tj.boronov.farhang.ui
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import tj.boronov.farhang.R
 import tj.boronov.farhang.databinding.ActivityMainBinding
+import tj.boronov.farhang.dialog.MainInfoDialog
 import tj.boronov.farhang.util.setupWithNavController
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private var currentNavController: LiveData<NavController>? = null
     lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.AppTheme)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
-
-        supportActionBar?.elevation = 0.0f
+        setSupportActionBar(binding.toolbar)
 
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
@@ -48,7 +46,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.infoFragment -> {
-                InfoDialog().show(supportFragmentManager, "infoDialog")
+                MainInfoDialog()
+                    .show(supportFragmentManager, "infoDialog")
                 return true
             }
             else -> super.onOptionsItemSelected(item)

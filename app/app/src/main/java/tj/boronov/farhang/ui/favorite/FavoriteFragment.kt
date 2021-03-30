@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import tj.boronov.farhang.adapter.ViewPagerFavoriteAdapter
 import tj.boronov.farhang.databinding.FragmentFavoriteBinding
+import tj.boronov.farhang.ui.BaseFragment
 
-class FavoriteFragment : Fragment() {
+class FavoriteFragment : BaseFragment() {
 
     lateinit var binding: FragmentFavoriteBinding
     var favoriteNameList = listOf("Словарь", "Разговорник", "Ёднома")

@@ -4,20 +4,26 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import tj.boronov.farhang.R
-import tj.boronov.farhang.databinding.FragmentWordBinding
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent.setEventListener
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 import tj.boronov.farhang.adapter.WordAdapter
+import tj.boronov.farhang.databinding.FragmentWordBinding
+import tj.boronov.farhang.dialog.ChooseDirectDialog
+import tj.boronov.farhang.interfaces.ChooseDirectListener
+import tj.boronov.farhang.ui.BaseActivity
+import tj.boronov.farhang.ui.BaseFragment
+import tj.boronov.farhang.util.vibratePhone
 
-class WordFragment : Fragment() {
+class WordFragment : BaseFragment(), ChooseDirectListener {
 
     lateinit var viewModel: WordViewModel
     lateinit var binding: FragmentWordBinding
@@ -25,9 +31,15 @@ class WordFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         viewModel = ViewModelProvider(this).get(WordViewModel::class.java)
         retainInstance = true
+        wordAdapter = WordAdapter(requireActivity().supportFragmentManager)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            viewModel.flow.collectLatest {
+                wordAdapter.submitData(it)
+            }
+        }
     }
 
     override fun onCreateView(
@@ -38,10 +50,8 @@ class WordFragment : Fragment() {
 
         binding = FragmentWordBinding.inflate(inflater, container, false)
 
-        binding.btnLang.text =
-            resources.getStringArray(R.array.lang)[viewModel.dictionaryID.value!!.toInt()]
+        binding.btnLang.text = viewModel.direct.value?.first
 
-        wordAdapter = WordAdapter(requireActivity().supportFragmentManager)
         wordAdapter.addLoadStateListener { loadState ->
             if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && wordAdapter.itemCount < 1) {
                 binding.searchWordList.visibility = View.GONE
@@ -52,13 +62,6 @@ class WordFragment : Fragment() {
             }
         }
 
-
-        lifecycleScope.launch {
-            viewModel.flow.collectLatest {
-                wordAdapter.submitData(it)
-            }
-        }
-
         binding.searchWordList.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
@@ -66,31 +69,21 @@ class WordFragment : Fragment() {
         }
 
         binding.searchWord.addTextChangedListener {
-            viewModel.filterDatabase(it.toString(), viewModel.dictionaryID.value.toString())
+            if (viewModel.query.value != it.toString().trim()) {
+                viewModel.query.value = it.toString().trim()
+                viewModel.pagingSource?.invalidate()
+            }
         }
 
         binding.btnLang.setOnClickListener {
-            it.isClickable = false
-
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle(resources.getString(R.string.choose_lang))
-                .setSingleChoiceItems(
-                    R.array.lang,
-                    viewModel.dictionaryID.value!!.toInt()
-                )
-                { dialog, which ->
-                    viewModel.filterDatabase(viewModel.query.value.toString(), which.toString())
-                    binding.btnLang.text = resources.getStringArray(R.array.lang)[which]
-                    dialog.cancel()
-                    it.isClickable = true
-                }
-                .setOnDismissListener {
-                    binding.btnLang.isClickable = true
-                }
-                .show()
+            ChooseDirectDialog(this).show(
+                (requireActivity() as BaseActivity).supportFragmentManager,
+                null
+            )
         }
 
         binding.letter1.setOnClickListener {
+            requireContext().vibratePhone(20)
             var position: Int = binding.searchWord.selectionStart
             binding.searchWord.setText(
                 addLetter(
@@ -103,6 +96,7 @@ class WordFragment : Fragment() {
         }
 
         binding.letter2.setOnClickListener {
+            requireContext().vibratePhone(20)
             var position: Int = binding.searchWord.selectionStart
             binding.searchWord.setText(
                 addLetter(
@@ -115,6 +109,7 @@ class WordFragment : Fragment() {
         }
 
         binding.letter3.setOnClickListener {
+            requireContext().vibratePhone(20)
             var position: Int = binding.searchWord.selectionStart
             binding.searchWord.setText(
                 addLetter(
@@ -128,6 +123,7 @@ class WordFragment : Fragment() {
 
 
         binding.letter4.setOnClickListener {
+            requireContext().vibratePhone(20)
             var position: Int = binding.searchWord.selectionStart
             binding.searchWord.setText(
                 addLetter(
@@ -140,6 +136,7 @@ class WordFragment : Fragment() {
         }
 
         binding.letter5.setOnClickListener {
+            requireContext().vibratePhone(20)
             var position: Int = binding.searchWord.selectionStart
             binding.searchWord.setText(
                 addLetter(
@@ -152,6 +149,7 @@ class WordFragment : Fragment() {
         }
 
         binding.letter6.setOnClickListener {
+            requireContext().vibratePhone(20)
             var position: Int = binding.searchWord.selectionStart
             binding.searchWord.setText(
                 addLetter(
@@ -163,6 +161,15 @@ class WordFragment : Fragment() {
             binding.searchWord.setSelection(++position)
         }
 
+        setEventListener(
+            requireActivity(),
+            viewLifecycleOwner,
+            object : KeyboardVisibilityEventListener {
+                override fun onVisibilityChanged(isOpen: Boolean) {
+                    binding.letterPanel.isVisible = isOpen
+                }
+            })
+
         return binding.root
     }
 
@@ -170,10 +177,8 @@ class WordFragment : Fragment() {
         return string.substring(0, position) + letter + string.substring(position)
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-
-        binding.btnLang.text =
-            resources.getStringArray(R.array.lang)[viewModel.dictionaryID.value!!.toInt()]
+    override fun callbackDirect(direct: String, directId: Int) {
+        viewModel.direct.value = Pair(direct, directId)
+        viewModel.pagingSource?.invalidate()
     }
 }

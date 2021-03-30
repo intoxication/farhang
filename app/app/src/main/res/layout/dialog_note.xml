@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -19,11 +20,11 @@
             android:id="@+id/note_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
             android:gravity="center"
-            android:text="абрикос"
             android:textColor="@color/primaryText"
-            android:textSize="20sp"
-            android:textStyle="bold|italic" />
+            android:textSize="18sp"
+            tools:text="абрикос" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,11 +71,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_medium"
+            android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:scrollbars="vertical"
-            android:text="1. зардолу; 2. дарахти зардолу. 1. зардолу; 2. дарахти зардолу. 1. зардолу;"
-            android:textColor="@color/secondaryText"
-            android:textSize="16sp" />
+            android:textColor="@color/primaryText"
+            android:textSize="16sp"
+            tools:text="1. зардолу; 2. дарахти зардолу. 1. зардолу; 2. дарахти зардолу. 1. зардолу;" />
 
     </LinearLayout>
 

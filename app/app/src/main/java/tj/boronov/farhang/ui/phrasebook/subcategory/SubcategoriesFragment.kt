@@ -1,7 +1,6 @@
 package tj.boronov.farhang.ui.phrasebook.subcategory
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,9 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tj.boronov.farhang.adapter.PhrasesAdapter
 import tj.boronov.farhang.databinding.FragmentSubcategoriesBinding
+import tj.boronov.farhang.ui.BaseFragment
 
-class SubcategoriesFragment : Fragment() {
+class SubcategoriesFragment : BaseFragment() {
 
     lateinit var viewModel: SubcategoriesViewModel
     lateinit var binding: FragmentSubcategoriesBinding

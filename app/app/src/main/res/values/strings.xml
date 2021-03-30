@@ -24,7 +24,6 @@
     <string name="copy_tj">Скопировать фразу</string>
     <string name="copy_ru">Скопировать перевод фразы</string>
 
-    <string name="note_title">"В этом сборнике собраны основные правила таджикского языка. Рекомендуется ученикам, учителям и всем желающим. "</string>
     <string name="share">Поделиться</string>
     <string name="ok">OK</string>
     <string name="test_category_1">Погода</string>
@@ -52,11 +51,12 @@
     <!-- Type of translate -->
     <string name="ru_tj_string">RU-TJ</string>
     <string name="choose_lang">Направление перевода:</string>
-    <string-array name="lang">
-        <item>Все</item>
-        <item>TJ-RU</item>
-        <item>RU-TJ</item>
-        <item>TJ-TJ</item>
-    </string-array>
+    <string name="version">Версия</string>
+
+    <string name="direct_all">Все</string>
+    <string name="direct_tJ_ru">TJ-RU</string>
+    <string name="direct_ru_tj">RU-TJ</string>
+    <string name="direct_tj_tj">TJ-TJ</string>
+    <string name="todo">todo</string>
 
 </resources>

@@ -1,19 +1,21 @@
 package tj.boronov.farhang.ui.phrasebook
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import tj.boronov.farhang.adapter.CategoriesAdapter
 import tj.boronov.farhang.databinding.FragmentPhrasebookBinding
+import tj.boronov.farhang.ui.BaseFragment
 
-class PhrasebookFragment : Fragment() {
+class PhrasebookFragment : BaseFragment() {
 
     lateinit var viewModel: PhrasebookViewModel
     lateinit var binding: FragmentPhrasebookBinding
@@ -24,6 +26,13 @@ class PhrasebookFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(PhrasebookViewModel::class.java)
         retainInstance = true
+        categoriesAdapter = CategoriesAdapter()
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            viewModel.flow.collectLatest {
+                categoriesAdapter.submitData(it)
+            }
+        }
     }
 
     override fun onCreateView(
@@ -34,20 +43,12 @@ class PhrasebookFragment : Fragment() {
 
         binding = FragmentPhrasebookBinding.inflate(inflater, container, false)
 
-        categoriesAdapter = CategoriesAdapter()
-
-
         binding.phrasebookList.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = categoriesAdapter
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.flow.collectLatest {
-                categoriesAdapter.submitData(it)
-            }
-        }
         return binding.root
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
@@ -24,12 +25,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:fontFamily="@font/roboto_medium"
                 android:maxLines="1"
                 android:padding="@dimen/spacing_middle"
-                android:text="абрикос"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18sp"
-                android:textStyle="bold|italic" />
+                tools:text="абрикос" />
 
             <TextView
                 android:id="@+id/text_definition_word"
@@ -37,12 +38,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/text_word"
                 android:ellipsize="end"
+                android:fontFamily="@font/roboto_regular"
                 android:maxLines="1"
                 android:paddingLeft="@dimen/spacing_middle"
                 android:paddingRight="@dimen/spacing_middle"
                 android:paddingBottom="@dimen/spacing_middle"
-                android:text="1. зардолу; 2. дарахти зардолу. 1. зардолу; 2. дарахти зардолу. 1. зардолу;"
-                android:textColor="@color/secondaryText" />
+                android:textColor="@color/primaryText"
+                tools:text="1. зардолу; 2. дарахти зардолу. 1. зардолу; 2. дарахти зардолу. 1. зардолу;" />
 
         </RelativeLayout>
 

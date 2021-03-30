@@ -13,7 +13,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         mFirebaseAnalytics = Firebase.analytics
-
+        instance = this
         database = Room.databaseBuilder(this, FarhangDatabase::class.java, DATABASE_NAME)
             .createFromAsset("database/data.db")
             .fallbackToDestructiveMigration()
@@ -21,6 +21,7 @@ class App : Application() {
     }
 
     companion object {
+        lateinit var instance: App
         lateinit var database: FarhangDatabase private set
         private lateinit var mFirebaseAnalytics: FirebaseAnalytics
     }

@@ -1,4 +1,4 @@
-package tj.boronov.farhang.ui.phrasebook.category
+package tj.boronov.farhang.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater

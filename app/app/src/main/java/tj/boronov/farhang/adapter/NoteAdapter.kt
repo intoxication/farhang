@@ -12,13 +12,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Note
-import tj.boronov.farhang.ui.note.NoteDialog
+import tj.boronov.farhang.dialog.NoteDialog
 
-class NoteAdapter(_fragmentManager: FragmentManager) :
+class NoteAdapter(private val fragmentManager: FragmentManager) :
     PagingDataAdapter<Note, NoteAdapter.NoteViewHolder>(
         NoteComparator
     ) {
-    private val fragmentManager = _fragmentManager
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
@@ -61,7 +60,7 @@ class NoteAdapter(_fragmentManager: FragmentManager) :
         }
 
         override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
-            return oldItem.favorite == newItem.favorite
+            return oldItem == newItem
         }
     }
 }

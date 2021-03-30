@@ -1,44 +1,57 @@
 package tj.boronov.farhang.ui.phrasebook.category
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 import tj.boronov.farhang.R
 import tj.boronov.farhang.adapter.PhrasesAdapter
 import tj.boronov.farhang.adapter.ViewPagerFragmentAdapter
 import tj.boronov.farhang.data.model.Categories
 import tj.boronov.farhang.databinding.ActivityCategoryBinding
+import tj.boronov.farhang.dialog.InfoDialog
+import tj.boronov.farhang.ui.BaseActivity
+import tj.boronov.farhang.util.vibratePhone
 
-class CategoryActivity : AppCompatActivity() {
+class CategoryActivity : BaseActivity() {
 
     private lateinit var binding: ActivityCategoryBinding
-    lateinit var viewModel: CategoryViewModel
-    lateinit var phrasesAdapter: PhrasesAdapter
+    private lateinit var viewModel: CategoryViewModel
+    private lateinit var phrasesAdapter: PhrasesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
 
         binding = ActivityCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
 
         supportActionBar?.elevation = 0.0f
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        viewModel = ViewModelProvider(this).get(CategoryViewModel::class.java)
+        val category = Categories()
+        category.id = intent.getIntExtra("categoryID", 0)
+        category.name = intent.getStringExtra("categoryName").toString()
+        category.description = intent.getStringExtra("categoryDescription").toString()
+        category.image = intent.getStringExtra("categoryImage").toString()
+
+        supportActionBar?.title = category.name
 
         phrasesAdapter = PhrasesAdapter()
         phrasesAdapter.addLoadStateListener { loadState ->
@@ -49,12 +62,6 @@ class CategoryActivity : AppCompatActivity() {
             )
         }
 
-        val category = Categories()
-        category.id = intent.getIntExtra("categoryID", 0)
-        category.name = intent.getStringExtra("categoryName").toString()
-        category.description = intent.getStringExtra("categoryDescription").toString()
-        category.image = intent.getStringExtra("categoryImage").toString()
-
         binding.searchPhrases.addTextChangedListener {
             viewModel.searchPhrases(it.toString().trim())
         }
@@ -63,13 +70,6 @@ class CategoryActivity : AppCompatActivity() {
             viewModel.init(category)
             withContext(Dispatchers.Main)
             {
-                Glide.with(this@CategoryActivity)
-                    .load(Uri.parse("file:///android_asset/icon/" + viewModel.category.image))
-                    .into(binding.categoryIcon)
-
-                binding.categoryName.text = viewModel.category.name
-                binding.categoryDescription.text = viewModel.category.description
-
                 binding.viewPager.adapter =
                     ViewPagerFragmentAdapter(
                         viewModel,
@@ -89,11 +89,99 @@ class CategoryActivity : AppCompatActivity() {
             setHasFixedSize(true)
             adapter = phrasesAdapter
         }
+
         lifecycleScope.launch {
             viewModel.flow.collectLatest {
                 phrasesAdapter.submitData(it)
             }
         }
+
+        binding.letter1.setOnClickListener {
+            vibratePhone(20)
+            var position: Int = binding.searchPhrases.selectionStart
+            binding.searchPhrases.setText(
+                addLetter(
+                    binding.searchPhrases.text.toString(),
+                    binding.letter1.text.toString(),
+                    position
+                )
+            )
+            binding.searchPhrases.setSelection(++position)
+        }
+
+        binding.letter2.setOnClickListener {
+            vibratePhone(20)
+            var position: Int = binding.searchPhrases.selectionStart
+            binding.searchPhrases.setText(
+                addLetter(
+                    binding.searchPhrases.text.toString(),
+                    binding.letter2.text.toString(),
+                    position
+                )
+            )
+            binding.searchPhrases.setSelection(++position)
+        }
+
+        binding.letter3.setOnClickListener {
+            vibratePhone(20)
+            var position: Int = binding.searchPhrases.selectionStart
+            binding.searchPhrases.setText(
+                addLetter(
+                    binding.searchPhrases.text.toString(),
+                    binding.letter3.text.toString(),
+                    position
+                )
+            )
+            binding.searchPhrases.setSelection(++position)
+        }
+
+
+        binding.letter4.setOnClickListener {
+            vibratePhone(20)
+            var position: Int = binding.searchPhrases.selectionStart
+            binding.searchPhrases.setText(
+                addLetter(
+                    binding.searchPhrases.text.toString(),
+                    binding.letter4.text.toString(),
+                    position
+                )
+            )
+            binding.searchPhrases.setSelection(++position)
+        }
+
+        binding.letter5.setOnClickListener {
+            vibratePhone(20)
+            var position: Int = binding.searchPhrases.selectionStart
+            binding.searchPhrases.setText(
+                addLetter(
+                    binding.searchPhrases.text.toString(),
+                    binding.letter5.text.toString(),
+                    position
+                )
+            )
+            binding.searchPhrases.setSelection(++position)
+        }
+
+        binding.letter6.setOnClickListener {
+            vibratePhone(20)
+            var position: Int = binding.searchPhrases.selectionStart
+            binding.searchPhrases.setText(
+                addLetter(
+                    binding.searchPhrases.text.toString(),
+                    binding.letter6.text.toString(),
+                    position
+                )
+            )
+            binding.searchPhrases.setSelection(++position)
+        }
+
+        KeyboardVisibilityEvent.setEventListener(
+            this,
+            object : KeyboardVisibilityEventListener {
+                override fun onVisibilityChanged(isOpen: Boolean) {
+                    binding.letterPanel.isVisible = isOpen
+                }
+            })
     }
 
     private fun showSearchPhrases(show: Boolean) {
@@ -121,11 +209,17 @@ class CategoryActivity : AppCompatActivity() {
                 return true
             }
             R.id.infoFragment -> {
-                InfoDialog().show(supportFragmentManager, "infoDialog")
+                InfoDialog()
+                    .show(supportFragmentManager, null)
                 return true
             }
             else -> super.onOptionsItemSelected(item)
         }
         return false
     }
+
+    private fun addLetter(string: String, letter: String, position: Int): String {
+        return string.substring(0, position) + letter + string.substring(position)
+    }
+
 }

@@ -33,3 +33,5 @@ const val TABLE_NOTE_COLUMN_ID = "_id"
 const val TABLE_NOTE_COLUMN_NAME = "name"
 const val TABLE_NOTE_COLUMN_FAVORITE = "favorite"
 const val TABLE_NOTE_COLUMN_DESCRIPTION = "description"
+
+const val SPLASH_SCREEN_TIME_DELAY = 1500L

@@ -1,5 +1,6 @@
-package tj.boronov.farhang.ui
+package tj.boronov.farhang.dialog
 
+import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -8,12 +9,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import tj.boronov.farhang.BuildConfig
+import tj.boronov.farhang.R
 import tj.boronov.farhang.databinding.DialogInfoBinding
 
-class InfoDialog : DialogFragment() {
+class MainInfoDialog : DialogFragment() {
 
     lateinit var binding: DialogInfoBinding
 
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,6 +29,9 @@ class InfoDialog : DialogFragment() {
         binding.btnClose.setOnClickListener {
             dismiss()
         }
+
+        // Set version code
+        binding.textViewAppVersionCode.text = "${getString(R.string.version)} ${BuildConfig.VERSION_NAME}"
 
         // Go to Github
         binding.goToGithub.setOnClickListener {

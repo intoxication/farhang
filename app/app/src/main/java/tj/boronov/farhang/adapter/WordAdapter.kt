@@ -25,7 +25,7 @@ import kotlinx.coroutines.launch
 import tj.boronov.farhang.App
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Word
-import tj.boronov.farhang.ui.word.WordDialog
+import tj.boronov.farhang.dialog.WordDialog
 
 class WordAdapter(_fragmentManager: FragmentManager) :
     PagingDataAdapter<Word, WordAdapter.WordViewHolder>(
