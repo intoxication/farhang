@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2d4059</color>
+    <color name="colorPrimaryDark">@color/colorAccent</color>
+    <color name="colorAccent">#ea5455</color>
+
+    <color name="colorLast">#decdc3</color>
+    <color name="colorGreen">#1CA53D</color>
+    <color name="colorRed">#FF2400</color>
+
+    <color name="lightGrey">#EEEEEE</color>
+    <color name="primaryText">#212121</color>
+    <color name="secondaryText">#999A9E</color>
+
+    <color name="colorFavorite">#FBBC04</color>
+    <color name="ic_launcher_background">#2D4059</color>
+</resources>
