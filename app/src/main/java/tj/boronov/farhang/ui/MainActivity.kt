@@ -1,5 +1,6 @@
 package tj.boronov.farhang.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -9,7 +10,9 @@ import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import tj.boronov.farhang.R
 import tj.boronov.farhang.databinding.ActivityMainBinding
+import tj.boronov.farhang.dialog.ChangeLanguagesInterfaceFragment
 import tj.boronov.farhang.dialog.MainInfoDialog
+import tj.boronov.farhang.ui.settings.SettingsActivity
 import tj.boronov.farhang.util.setupWithNavController
 
 class MainActivity : BaseActivity() {
@@ -46,8 +49,7 @@ class MainActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.infoFragment -> {
-                MainInfoDialog()
-                    .show(supportFragmentManager, "infoDialog")
+                startActivity(Intent(this, SettingsActivity::class.java))
                 return true
             }
             else -> super.onOptionsItemSelected(item)

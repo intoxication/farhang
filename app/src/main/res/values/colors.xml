@@ -14,4 +14,6 @@
 
     <color name="colorFavorite">#FBBC04</color>
     <color name="ic_launcher_background">#2D4059</color>
+    <color name="withe">#FFFFFF</color>
+    <color name="black">#000000</color>
 </resources>

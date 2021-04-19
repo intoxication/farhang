@@ -58,5 +58,15 @@
     <string name="direct_ru_tj">RU-TJ</string>
     <string name="direct_tj_tj">TJ-TJ</string>
     <string name="todo">todo</string>
+    <string name="title_settings">Настройки</string>
+    <string name="title_languages">Выбрать язык интерфейса приложения</string>
+    <string name="title_dark_them">Включить темную тему</string>
+    <string name="title_notification">Подписаться на уведомления</string>
+    <string name="title_version">Посмотреть версию и создателей приложения</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="languages_tj">Тоҷикӣ</string>
+    <string name="languages_ru">Русский</string>
+    <string name="languages_en">English</string>
 
 </resources>
