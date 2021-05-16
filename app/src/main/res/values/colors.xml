@@ -16,4 +16,6 @@
     <color name="ic_launcher_background">#2D4059</color>
     <color name="withe">#FFFFFF</color>
     <color name="black">#000000</color>
+
+    <color name="disable_thumb_grey">#f1f1f1</color>
 </resources>

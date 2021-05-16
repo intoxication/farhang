@@ -17,6 +17,18 @@ class MainInfoDialog : DialogFragment() {
 
     lateinit var binding: DialogInfoBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(STYLE_NO_TITLE, R.style.FullscreenThemeAlertDialog)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val width = ViewGroup.LayoutParams.MATCH_PARENT
+        val height = ViewGroup.LayoutParams.MATCH_PARENT
+        dialog?.window?.setLayout(width, height)
+    }
+
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,14 +45,19 @@ class MainInfoDialog : DialogFragment() {
         // Set version code
         binding.textViewAppVersionCode.text = "${getString(R.string.version)} ${BuildConfig.VERSION_NAME}"
 
-        // Go to Github
-        binding.goToGithub.setOnClickListener {
+        binding.goToGitHubBoronov.setOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/boronov")))
         }
+        binding.goToGitHubIslom.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/islom-din")))
+        }
+        binding.goToGitHubSarkar.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Sarkar1399")))
+        }
 
-        // Go to Telegram
-        binding.goToTelegram.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/boronov_11")))
+        // Go to Github
+        binding.goToGithub.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/boronov/farhang")))
         }
 
         // Rate app button

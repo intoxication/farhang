@@ -1,12 +1,11 @@
 package tj.boronov.farhang.ui.settings
 
-import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import tj.boronov.farhang.databinding.ActivitySettingsBinding
 import tj.boronov.farhang.dialog.ChangeLanguagesInterfaceFragment
+import tj.boronov.farhang.dialog.MainInfoDialog
 import tj.boronov.farhang.ui.MainActivity
 
 class SettingsActivity : AppCompatActivity() {
@@ -34,7 +33,9 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.divNotification.setOnClickListener {  }
 
-        binding.divSeeVersion.setOnClickListener {  }
+        binding.divSeeVersion.setOnClickListener {
+            MainInfoDialog().show(supportFragmentManager, "MainInfoDialog")
+        }
 
     }
 
