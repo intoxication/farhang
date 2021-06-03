@@ -20,6 +20,7 @@ import tj.boronov.farhang.App
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Word
 import tj.boronov.farhang.databinding.DialogWordBinding
+import tj.boronov.farhang.util.scale
 
 class WordDialog : DialogFragment() {
 
@@ -59,6 +60,11 @@ class WordDialog : DialogFragment() {
         // Change favorite status
         binding.btnFavorite.setOnClickListener {
             word.favorite = (word.favorite + 1) % 2
+
+            if (word.favorite == 1) {
+                scale(binding.btnFavorite)
+            }
+
             setFavorite(word.favorite)
             lifecycleScope.launch {
                 App.database.wordDao().update(word)

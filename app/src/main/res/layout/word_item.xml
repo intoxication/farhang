@@ -19,11 +19,12 @@
         <RelativeLayout
             android:id="@+id/word_panel"
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="75"
             android:paddingStart="10dp"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_height="match_parent"
-            android:layout_weight="75">
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp">
 
             <TextView
                 android:id="@+id/text_word"
@@ -65,9 +66,9 @@
                 style="@style/Widget.App.Button.IconOnly"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_toStartOf="@+id/menu_button"
-                android:layout_marginEnd="10dp"
                 android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:layout_toStartOf="@+id/menu_button"
                 android:background="@drawable/ic_favorite"
                 app:backgroundTint="@color/colorFavorite" />
 
@@ -89,10 +90,7 @@
                     android:textAppearance="?android:textAppearanceLarge" />
 
             </FrameLayout>
-
-
         </RelativeLayout>
-
     </LinearLayout>
 
     <View

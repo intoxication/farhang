@@ -6,11 +6,9 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.TextView
@@ -30,6 +28,8 @@ import tj.boronov.farhang.App
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Word
 import tj.boronov.farhang.dialog.WordDialog
+import tj.boronov.farhang.util.scale
+
 
 class WordAdapter(
     _fragmentManager: FragmentManager,
@@ -72,12 +72,12 @@ class WordAdapter(
         }
 
         // Set isFavorite icon in item
-        setFavorite(word?.favorite ?: 0, holder)
+        setFavorite(false, word?.favorite ?: 0, holder)
 
         // Button for add word to favorite
         holder.itemView.findViewById<ImageButton>(R.id.btn_favorite).setOnClickListener {
             word!!.favorite = (word.favorite + 1) % 2
-            setFavorite(word.favorite, holder)
+            setFavorite(true, word.favorite, holder)
 
             CoroutineScope(Dispatchers.IO).launch {
                 App.database.wordDao().update(word)
@@ -86,11 +86,11 @@ class WordAdapter(
 
         // menu
         val menu = holder.itemView.findViewById<FrameLayout>(R.id.menu_button)
-        menu.setOnClickListener { view:View ->
+        menu.setOnClickListener { view: View ->
             val popup = PopupMenu(context, menu)
             popup.inflate(R.menu.word_item_menu)
             popup.setOnMenuItemClickListener {
-                when(it.itemId) {
+                when (it.itemId) {
                     R.id.copy_menu_item -> {
                         val clipboard: ClipboardManager =
                             context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -106,7 +106,12 @@ class WordAdapter(
                             Snackbar.LENGTH_SHORT
                         )
                             .setTextColor(Color.WHITE)
-                            .setBackgroundTint(ContextCompat.getColor(view.context, R.color.colorGreen))
+                            .setBackgroundTint(
+                                ContextCompat.getColor(
+                                    view.context,
+                                    R.color.colorGreen
+                                )
+                            )
                             .show()
 
                         return@setOnMenuItemClickListener true
@@ -121,7 +126,10 @@ class WordAdapter(
                         sendIntent.type = "text/plain"
                         startActivity(
                             context,
-                            Intent.createChooser(sendIntent, context.resources.getString(R.string.share)),
+                            Intent.createChooser(
+                                sendIntent,
+                                context.resources.getString(R.string.share)
+                            ),
                             null
                         )
                         return@setOnMenuItemClickListener true
@@ -147,7 +155,7 @@ class WordAdapter(
         }
     }
 
-    private fun setFavorite(isFavorite: Int, holder: WordViewHolder) {
+    private fun setFavorite(isClicked: Boolean, isFavorite: Int, holder: WordViewHolder) {
         holder.itemView.findViewById<ImageButton>(R.id.btn_favorite).background =
             if (isFavorite == 0) {
                 AppCompatResources.getDrawable(
@@ -155,11 +163,13 @@ class WordAdapter(
                     R.drawable.ic_favorite
                 )
             } else {
+                if (isClicked) scale(holder.itemView.findViewById(R.id.btn_favorite))
                 AppCompatResources.getDrawable(
                     holder.itemView.context,
                     R.drawable.ic_favorite_true
                 )
             }
-
     }
+
+
 }

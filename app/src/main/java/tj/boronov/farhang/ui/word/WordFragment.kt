@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
@@ -161,14 +162,14 @@ class WordFragment : BaseFragment(), ChooseDirectListener {
             binding.searchWord.setSelection(++position)
         }
 
+        viewModel.direct.observe(viewLifecycleOwner, Observer {
+            binding.btnLang.text = it.first
+        })
+
         setEventListener(
             requireActivity(),
             viewLifecycleOwner,
-            object : KeyboardVisibilityEventListener {
-                override fun onVisibilityChanged(isOpen: Boolean) {
-                    binding.letterPanel.isVisible = isOpen
-                }
-            })
+            KeyboardVisibilityEventListener { isOpen -> binding.letterPanel.isVisible = isOpen })
 
         return binding.root
     }

@@ -17,7 +17,7 @@ class NoteViewModel : ViewModel() {
     var pagingSource: PagingSource<Int, Note>? = null
 
     val flow = Pager(
-        PagingConfig(pageSize = 30, enablePlaceholders = true)
+        PagingConfig(pageSize = 10, enablePlaceholders = false)
     ) {
         Log.d("TAG_TEST", "wft: ")
         App.database.noteDao().searchNote("%${query.value}%").also {

@@ -20,7 +20,7 @@ class WordViewModel : ViewModel() {
     var pagingSource: PagingSource<Int, Word>? = null
 
     val flow = Pager(
-        PagingConfig(pageSize = 30, enablePlaceholders = true)
+        PagingConfig(pageSize = 10, enablePlaceholders = false)
     ) {
         if (direct.value?.second != 0) {
             App.database.wordDao().getByWord("${query.value}%", direct.value?.second ?: 0)

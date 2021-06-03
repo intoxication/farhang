@@ -38,6 +38,7 @@ class NoteFavoriteFragment : BaseFragment() {
             if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && noteAdapter.itemCount < 1) {
                 binding.list.visibility = View.GONE
                 binding.layoutNoDataFavorite.root.visibility = View.VISIBLE
+                binding.layoutNoDataFavorite.noInternetImage.playAnimation()
             } else {
                 binding.list.visibility = View.VISIBLE
                 binding.layoutNoDataFavorite.root.visibility = View.GONE
@@ -57,5 +58,22 @@ class NoteFavoriteFragment : BaseFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.layoutNoDataFavorite.noInternetImage.pauseAnimation()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.layoutNoDataFavorite.noInternetImage.pauseAnimation()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (noteAdapter.itemCount == 0) {
+            binding.layoutNoDataFavorite.noInternetImage.playAnimation()
+        }
     }
 }

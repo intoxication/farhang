@@ -23,6 +23,7 @@ import kotlinx.coroutines.launch
 import tj.boronov.farhang.App
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Phrases
+import tj.boronov.farhang.util.scale
 
 
 class PhrasesAdapter :
@@ -40,12 +41,12 @@ class PhrasesAdapter :
         holder.itemView.findViewById<TextView>(R.id.translate_tj).text = phrase?.translateTj
 
         // Set isFavorite icon in item
-        setFavorite(phrase?.favorite ?: 0, holder)
+        setFavorite(false, phrase?.favorite ?: 0, holder)
 
         // Button for add word to favorite
         holder.itemView.findViewById<Button>(R.id.btn_favorite).setOnClickListener {
             phrase!!.favorite = (phrase.favorite + 1) % 2
-            setFavorite(phrase.favorite, holder)
+            setFavorite(true, phrase.favorite, holder)
 
             CoroutineScope(Dispatchers.IO).launch {
                 App.database.phrasebookDao().update(phrase)
@@ -123,7 +124,7 @@ class PhrasesAdapter :
         )
     }
 
-    private fun setFavorite(isFavorite: Int, holder: PhrasesViewHolder) {
+    private fun setFavorite(isClicked: Boolean, isFavorite: Int, holder: PhrasesViewHolder) {
         holder.itemView.findViewById<Button>(R.id.btn_favorite).background =
             if (isFavorite == 0) {
                 AppCompatResources.getDrawable(
@@ -131,6 +132,7 @@ class PhrasesAdapter :
                     R.drawable.ic_favorite
                 )
             } else {
+                if (isClicked) scale(holder.itemView.findViewById<Button>(R.id.btn_favorite))
                 AppCompatResources.getDrawable(
                     holder.itemView.context,
                     R.drawable.ic_favorite_true

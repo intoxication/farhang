@@ -19,7 +19,7 @@ class FavoriteViewModel : ViewModel() {
 
 
     val flowWord = Pager(
-        PagingConfig(pageSize = 30, enablePlaceholders = true)
+        PagingConfig(pageSize = 10, enablePlaceholders = false)
     ) {
         App.database.wordDao().getFavorite().also {
             pagingSourceWord = it
@@ -27,7 +27,7 @@ class FavoriteViewModel : ViewModel() {
     }.flow.cachedIn(viewModelScope)
 
     val flowPhrases = Pager(
-        PagingConfig(pageSize = 30, enablePlaceholders = true)
+        PagingConfig(pageSize = 10, enablePlaceholders = false)
     ) {
         App.database.phrasebookDao().getFavorite().also {
             pagingSourcePhrases = it
@@ -35,7 +35,7 @@ class FavoriteViewModel : ViewModel() {
     }.flow.cachedIn(viewModelScope)
 
     val flowNote = Pager(
-        PagingConfig(pageSize = 30, enablePlaceholders = true)
+        PagingConfig(pageSize = 10, enablePlaceholders = false)
     ) {
         App.database.noteDao().getFavorite().also {
             pagingSourceNote = it

@@ -1,7 +1,6 @@
 package tj.boronov.farhang.ui.note
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener
 import tj.boronov.farhang.adapter.NoteAdapter
@@ -54,6 +51,7 @@ class NoteFragment : BaseFragment() {
             if (loadState.source.refresh is LoadState.NotLoading && loadState.append.endOfPaginationReached && noteAdapter.itemCount < 1) {
                 binding.noteList.visibility = View.GONE
                 binding.layoutNoNote.root.visibility = View.VISIBLE
+                binding.layoutNoNote.noDataImage.playAnimation()
             } else {
                 binding.noteList.visibility = View.VISIBLE
                 binding.layoutNoNote.root.visibility = View.GONE
@@ -165,5 +163,22 @@ class NoteFragment : BaseFragment() {
 
     private fun addLetter(string: String, letter: String, position: Int): String {
         return string.substring(0, position) + letter + string.substring(position)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.layoutNoNote.noDataImage.pauseAnimation()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.layoutNoNote.noDataImage.pauseAnimation()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (noteAdapter.itemCount == 0) {
+            binding.layoutNoNote.noDataImage.playAnimation()
+        }
     }
 }

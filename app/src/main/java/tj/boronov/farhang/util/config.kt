@@ -34,4 +34,10 @@ const val TABLE_NOTE_COLUMN_NAME = "name"
 const val TABLE_NOTE_COLUMN_FAVORITE = "favorite"
 const val TABLE_NOTE_COLUMN_DESCRIPTION = "description"
 
-const val SPLASH_SCREEN_TIME_DELAY = 1500L
+// firebase
+const val FIREBASE_FIELD_NOTIFICATION_ID = "id"
+const val FIREBASE_FIELD_NOTIFICATION_ACTION = "action"
+const val FIREBASE_FIELD_NOTIFICATION_BODY = "body"
+const val FIREBASE_FIELD_NOTIFICATION_TITLE = "title"
+
+const val SPLASH_SCREEN_TIME_DELAY = 500L

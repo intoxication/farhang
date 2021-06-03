@@ -35,13 +35,13 @@ class ChooseDirectDialog(listener: ChooseDirectListener) : BottomSheetDialogFrag
             dismiss()
         }
 
-        binding.directTjTj.setOnClickListener {
-            chooseLanguageListener.callbackDirect(getString(R.string.direct_tj_tj), 2)
+        binding.directRuTj.setOnClickListener {
+            chooseLanguageListener.callbackDirect(getString(R.string.direct_ru_tj), 2)
             dismiss()
         }
 
-        binding.directRuTj.setOnClickListener {
-            chooseLanguageListener.callbackDirect(getString(R.string.direct_ru_tj), 3)
+        binding.directTjTj.setOnClickListener {
+            chooseLanguageListener.callbackDirect(getString(R.string.direct_tj_tj), 3)
             dismiss()
         }
     }
