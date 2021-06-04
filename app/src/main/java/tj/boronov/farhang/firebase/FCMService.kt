@@ -57,7 +57,7 @@ class FCMService : FirebaseMessagingService() {
         val channelId = getString(R.string.default_notification_channel_id)
         val notificationBuilder =
             NotificationCompat.Builder(this, channelId)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.ic_launcher)
                 .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
                 .setContentTitle(title)
                 .setContentText(messageBody)
