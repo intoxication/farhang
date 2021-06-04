@@ -18,7 +18,6 @@ class CategoriesAdapter :
     PagingDataAdapter<Categories, CategoriesAdapter.ViewHolder>(
         CategoriesComparator
     ) {
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // Get data
         val category = getItem(position)

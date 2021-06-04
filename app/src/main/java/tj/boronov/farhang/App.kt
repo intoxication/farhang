@@ -1,9 +1,8 @@
 package tj.boronov.farhang
 
 import android.app.Application
-import android.os.StrictMode
-import android.os.StrictMode.ThreadPolicy
 import androidx.room.Room
+import com.google.android.gms.ads.MobileAds
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
@@ -15,16 +14,9 @@ import tj.boronov.farhang.util.DATABASE_NAME
 class App : Application() {
 
     override fun onCreate() {
-        if (BuildConfig.DEBUG) {
-            StrictMode.setThreadPolicy(
-                ThreadPolicy.Builder()
-                    .detectAll()
-                    .penaltyLog()
-                    .build()
-            )
-        }
-
         super.onCreate()
+
+        MobileAds.initialize(this) {}
         mFirebaseAnalytics = Firebase.analytics
         FirebaseMessaging.getInstance().subscribeToTopic("all")
         instance = this

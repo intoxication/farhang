@@ -7,13 +7,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.android.gms.ads.AdRequest
 import tj.boronov.farhang.R
 import tj.boronov.farhang.databinding.ActivityMainBinding
 import tj.boronov.farhang.dialog.MainInfoDialog
 import tj.boronov.farhang.util.setupWithNavController
 
 class MainActivity : BaseActivity() {
-
     private var currentNavController: LiveData<NavController>? = null
     lateinit var binding: ActivityMainBinding
 
@@ -24,17 +24,16 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
+        val adRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(adRequest)
+
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
-        // Else, need to wait for onRestoreInstanceState
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        // Now that BottomNavigationBar has restored its instance state
-        // and its selectedItemId, we can proceed with setting up the
-        // BottomNavigationBar with Navigation
         setupBottomNavigationBar()
     }
 
@@ -55,9 +54,6 @@ class MainActivity : BaseActivity() {
         return false
     }
 
-    /**
-     * Called on first creation and when restoring state.
-     */
     private fun setupBottomNavigationBar() {
         val bottomNavigationView = binding.navView
 

@@ -61,4 +61,12 @@
     <string name="add_to_favorite">Добавить в избранное</string>
     <string name="default_notification_channel_id">0</string>
 
+    <string name="base_banner">ca-app-pub-2216314182135440/1482082728</string>
+    <string name="category_fullscreen_banner">ca-app-pub-2216314182135440/4678898187</string>
+
+    <!--
+                            тестовые рекламные банеры
+    <string name="base_banner">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="category_fullscreen_banner">ca-app-pub-3940256099942544/1033173712</string>
+    -->
 </resources>

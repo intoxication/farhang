@@ -15,7 +15,7 @@ class InfoDialog : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DialogInfoPhrasesBinding.inflate(layoutInflater, container, false)
         return binding.root
     }

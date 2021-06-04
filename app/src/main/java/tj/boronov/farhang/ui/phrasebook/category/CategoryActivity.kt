@@ -6,14 +6,23 @@ import android.view.MenuItem
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.FullScreenContentCallback
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -26,6 +35,7 @@ import tj.boronov.farhang.data.model.Categories
 import tj.boronov.farhang.databinding.ActivityCategoryBinding
 import tj.boronov.farhang.dialog.InfoDialog
 import tj.boronov.farhang.ui.BaseActivity
+import tj.boronov.farhang.util.CATEGORY_AD_SLEEP_TIME
 import tj.boronov.farhang.util.vibratePhone
 
 class CategoryActivity : BaseActivity() {
@@ -33,6 +43,8 @@ class CategoryActivity : BaseActivity() {
     private lateinit var binding: ActivityCategoryBinding
     private lateinit var viewModel: CategoryViewModel
     private lateinit var phrasesAdapter: PhrasesAdapter
+
+    private var mInterstitialAd = MutableLiveData<InterstitialAd?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +56,44 @@ class CategoryActivity : BaseActivity() {
 
         supportActionBar?.elevation = 0.0f
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        val baseAdRequest = AdRequest.Builder().build()
+        binding.adView.loadAd(baseAdRequest)
+
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(
+            this,
+            getString(R.string.category_fullscreen_banner),
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    mInterstitialAd.value = null
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    mInterstitialAd.value = interstitialAd
+                }
+            })
+
+        mInterstitialAd.value?.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() {}
+            override fun onAdFailedToShowFullScreenContent(adError: AdError?) {}
+            override fun onAdShowedFullScreenContent() {
+                mInterstitialAd.value = null
+            }
+        }
+
+        mInterstitialAd.observe(this, Observer {
+            if (it != null) {
+                lifecycleScope.launch {
+                    delay(CATEGORY_AD_SLEEP_TIME)
+                    withContext(Dispatchers.Main)
+                    {
+                        it.show(this@CategoryActivity)
+                    }
+                }
+            }
+        })
 
         val category = Categories()
         category.id = intent.getIntExtra("categoryID", 0)

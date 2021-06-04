@@ -139,7 +139,6 @@ class WordAdapter(
             }
             popup.show()
         }
-
     }
 
     class WordViewHolder(view: View) : RecyclerView.ViewHolder(view)
@@ -170,6 +169,4 @@ class WordAdapter(
                 )
             }
     }
-
-
 }
