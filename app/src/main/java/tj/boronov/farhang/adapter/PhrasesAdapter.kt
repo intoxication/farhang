@@ -23,7 +23,6 @@ import kotlinx.coroutines.launch
 import tj.boronov.farhang.App
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Phrases
-import tj.boronov.farhang.util.scale
 
 
 class PhrasesAdapter :
@@ -132,7 +131,6 @@ class PhrasesAdapter :
                     R.drawable.ic_favorite
                 )
             } else {
-                if (isClicked) scale(holder.itemView.findViewById<Button>(R.id.btn_favorite))
                 AppCompatResources.getDrawable(
                     holder.itemView.context,
                     R.drawable.ic_favorite_true

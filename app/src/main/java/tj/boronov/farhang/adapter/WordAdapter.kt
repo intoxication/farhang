@@ -28,7 +28,6 @@ import tj.boronov.farhang.App
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Word
 import tj.boronov.farhang.dialog.WordDialog
-import tj.boronov.farhang.util.scale
 
 
 class WordAdapter(
@@ -162,7 +161,6 @@ class WordAdapter(
                     R.drawable.ic_favorite
                 )
             } else {
-                if (isClicked) scale(holder.itemView.findViewById(R.id.btn_favorite))
                 AppCompatResources.getDrawable(
                     holder.itemView.context,
                     R.drawable.ic_favorite_true

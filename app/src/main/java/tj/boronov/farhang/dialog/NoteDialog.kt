@@ -20,7 +20,6 @@ import tj.boronov.farhang.App
 import tj.boronov.farhang.R
 import tj.boronov.farhang.data.model.Note
 import tj.boronov.farhang.databinding.DialogNoteBinding
-import tj.boronov.farhang.util.scale
 
 class NoteDialog : DialogFragment() {
 
@@ -60,10 +59,6 @@ class NoteDialog : DialogFragment() {
         // Change favorite status
         binding.btnFavorite.setOnClickListener {
             note.favorite = (note.favorite + 1) % 2
-
-            if (note.favorite == 1) {
-                scale(binding.btnFavorite)
-            }
 
             setFavorite(note.favorite)
             lifecycleScope.launch {

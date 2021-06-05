@@ -1,7 +1,6 @@
 package tj.boronov.farhang.ui.phrasebook.category
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.core.view.isVisible
@@ -33,7 +32,6 @@ import tj.boronov.farhang.adapter.PhrasesAdapter
 import tj.boronov.farhang.adapter.ViewPagerFragmentAdapter
 import tj.boronov.farhang.data.model.Categories
 import tj.boronov.farhang.databinding.ActivityCategoryBinding
-import tj.boronov.farhang.dialog.InfoDialog
 import tj.boronov.farhang.ui.BaseActivity
 import tj.boronov.farhang.util.CATEGORY_AD_SLEEP_TIME
 import tj.boronov.farhang.util.vibratePhone
@@ -246,21 +244,10 @@ class CategoryActivity : BaseActivity() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.toolbar_menu, menu)
-        return true
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-
             android.R.id.home -> {
                 finish()
-                return true
-            }
-            R.id.infoFragment -> {
-                InfoDialog()
-                    .show(supportFragmentManager, null)
                 return true
             }
             else -> super.onOptionsItemSelected(item)

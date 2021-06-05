@@ -41,9 +41,6 @@
 
     <string name="empty_box">empty box</string>
     <string name="inter_phrases">Введите фразу</string>
-    <string name="touch_1">Скопировать фразу или её перевод</string>
-    <string name="touch_2">Скопировать и фразу и её перевод</string>
-    <string name="touch_3">Добавить фразу в избранные</string>
     <string name="github_logo">github logo</string>
     <string name="telegram_logo">telegram logo</string>
     <string name="close">Закрыть</string>
