@@ -15,7 +15,6 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         MobileAds.initialize(this) {}
         mFirebaseAnalytics = Firebase.analytics
         FirebaseMessaging.getInstance().subscribeToTopic("all")

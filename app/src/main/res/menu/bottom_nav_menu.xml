@@ -4,20 +4,24 @@
     <item
         android:id="@+id/nav_search"
         android:icon="@drawable/ic_search_menu"
-        android:title="@string/search" />
+        android:title="@string/search"
+        android:visible="true" />
 
     <item
         android:id="@+id/nav_phrasebook"
         android:icon="@drawable/ic_phrasebook"
-        android:title="@string/phrasebook" />
+        android:title="@string/phrasebook"
+        android:visible="true" />
 
     <item
         android:id="@+id/nav_note"
         android:icon="@drawable/ic_note"
-        android:title="@string/note" />
+        android:title="@string/note"
+        android:visible="true" />
 
     <item
         android:id="@+id/nav_favorite"
         android:icon="@drawable/ic_favorite_menu"
-        android:title="@string/favorites" />
+        android:title="@string/favorites"
+        android:visible="true" />
 </menu>
